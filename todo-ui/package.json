@@ -4,11 +4,13 @@
 	"description": "Front end component of the ThymeleafJS TodoMVC example project",
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
 	"scripts": {
-		"lint": "eslint \"**/*.js\"",
 		"build": "mkdirp ../todo-website/source/static && npm run build:images && npm run build:scripts && npm run build:styles",
 		"build:images": "ncp source/images ../todo-website/source/static/images",
 		"build:scripts": "webpack --output-path ../todo-website/source/static/scripts --output-filename todo.min.js",
-		"build:styles": "postcss source/styles/todo.css --output ../todo-website/source/static/styles/todo.min.css --map"
+		"build:styles": "postcss source/styles/todo.css --output ../todo-website/source/static/styles/todo.min.css --map",
+		"watch": "concurrently --kill-others \"npm run watch:scripts\" \"npm run watch:styles\"",
+		"watch:scripts": "chokidar \"source/scripts/**/*.js\" -c \"npm run build:scripts\"",
+		"watch:styles": "chokidar \"source/styles/**/*.less\" -c \"npm run build:styles\""
 	},
 	"dependencies": {
 		"dumb-query-selector": "^3.2.0",
@@ -17,15 +19,18 @@
     "todomvc-common": "^1.0.0"
 	},
 	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.2",
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+		"chokidar-cli": "^1.2.0",
+		"concurrently": "^3.5.0",
 		"cssnano": "^3.10.0",
-		"eslint": "^4.9.0",
-		"eslint-config-ultraq": "^2.0.0",
 		"mkdirp": "^0.5.1",
 		"ncp": "^2.0.0",
 		"postcss-cli": "^4.1.1",
 		"postcss-import": "^11.0.0",
-		"uglify-js": "https://github.com/mishoo/UglifyJS2.git#harmony-v2.8.22",
-		"uglifyjs-webpack-plugin": "^0.4.3",
+		"uglifyjs-webpack-plugin": "1.0.0-beta.3",
+		"uuid": "^3.1.0",
 		"webpack": "^3.8.1"
 	},
 	"private": true

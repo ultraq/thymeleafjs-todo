@@ -15,3 +15,28 @@
  */
 
 // import 'todomvc-common/base';
+import {$} from 'dumb-query-selector';
+
+// Toggle a todo item as completed/active when the tick is clicked
+$('.todo-list').addEventListener('click', event => {
+	let {target} = event;
+	if (target.matches('.toggle')) {
+		let todo = target.closest('.todo');
+
+		// Update DOM
+		todo.classList.toggle('completed');
+
+		// Notify server
+		let {todoId} = todo.dataset;
+		fetch(`/todo/${todoId}`, {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				value: $('.view', todo).textContent.trim(),
+				status: target.checked ? 'COMPLETED' : 'ACTIVE'
+			})
+		})
+	}
+});

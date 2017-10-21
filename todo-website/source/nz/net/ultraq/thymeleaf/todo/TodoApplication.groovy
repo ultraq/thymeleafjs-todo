@@ -33,6 +33,7 @@ class TodoApplication {
 	 * @param args
 	 */
 	static void main(String[] args) {
+
 		SpringApplication.run(TodoApplication, args)
 	}
 }

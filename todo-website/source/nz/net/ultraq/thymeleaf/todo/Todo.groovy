@@ -18,20 +18,45 @@ package nz.net.ultraq.thymeleaf.todo
 
 import static nz.net.ultraq.thymeleaf.todo.Status.*
 
-import groovy.transform.TupleConstructor
-
 /**
  * A to-do item.
  * 
  * @author Emanuel Rabina
  */
-@TupleConstructor
 class Todo {
 
+	final String id
 	String value
 	Status status = ACTIVE
 
+	/**
+	 * Constructor, an empty todo item.
+	 */
+	Todo() {
+
+		this(null)
+	}
+
+	/**
+	 * Constructor, generate a unique ID for the todo item.
+	 * 
+	 * @param value
+	 * @param status
+	 */
+	Todo(String value, Status status = ACTIVE) {
+
+		this.id     = UUID.randomUUID().toString()
+		this.value  = value
+		this.status = status
+	}
+
+	/**
+	 * Return whether this todo has the {@code COMPLETED} status.
+	 * 
+	 * @return {@code true} if the status is {@code COMPLETED}.
+	 */
 	boolean isCompleted() {
+
 		return status == COMPLETED
 	}
 }
