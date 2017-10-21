@@ -16,23 +16,13 @@
 
 package nz.net.ultraq.thymeleaf.todo
 
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
-
 /**
- * Configuration and starting point for the Thymeleaf JS TodoMVC example app.
+ * The status a todo item can be in.
  * 
  * @author Emanuel Rabina
  */
-@SpringBootApplication
-class TodoApplication {
+enum Status {
 
-	/**
-	 * Run the website as Spring Boot application!
-	 * 
-	 * @param args
-	 */
-	static void main(String[] args) {
-		SpringApplication.run(TodoApplication, args)
-	}
+	ACTIVE,
+	COMPLETED
 }

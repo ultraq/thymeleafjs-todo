@@ -1,0 +1,11 @@
+<li class="todo"
+	xmlns:th="http://www.thymeleaf.org"
+	th:fragment="todo-list-item(todo)"
+	th:classappend="${todo.completed} ? 'completed'">
+	<div class="view">
+		<input class="toggle" type="checkbox" th:checked="${todo.completed}">
+		<label th:text="${todo.value}">Taste JavaScript</label>
+		<button class="destroy"></button>
+	</div>
+	<input class="edit" value="Taste JavaScript" th:value="${todo.value}">
+</li>
