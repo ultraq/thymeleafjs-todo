@@ -1,0 +1,32 @@
+{
+	"name": "todo-ui",
+	"version": "0.1.0",
+	"description": "Front end component of the ThymeleafJS TodoMVC example project",
+	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
+	"scripts": {
+		"lint": "eslint \"**/*.js\"",
+		"build": "mkdirp ../todo-website/source/static && npm run build:images && npm run build:scripts && npm run build:styles",
+		"build:images": "ncp source/images ../todo-website/source/static/images",
+		"build:scripts": "webpack --output-path ../todo-website/source/static/scripts --output-filename todo.min.js",
+		"build:styles": "postcss source/styles/todo.css --output ../todo-website/source/static/styles/todo.min.css --map"
+	},
+	"dependencies": {
+		"dumb-query-selector": "^3.2.0",
+		"thymeleaf": "^0.7.1",
+    "todomvc-app-css": "^2.0.0",
+    "todomvc-common": "^1.0.0"
+	},
+	"devDependencies": {
+		"cssnano": "^3.10.0",
+		"eslint": "^4.9.0",
+		"eslint-config-ultraq": "^2.0.0",
+		"mkdirp": "^0.5.1",
+		"ncp": "^2.0.0",
+		"postcss-cli": "^4.1.1",
+		"postcss-import": "^11.0.0",
+		"uglify-js": "https://github.com/mishoo/UglifyJS2.git#harmony-v2.8.22",
+		"uglifyjs-webpack-plugin": "^0.4.3",
+		"webpack": "^3.8.1"
+	},
+	"private": true
+}

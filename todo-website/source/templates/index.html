@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	lang="en">
+
+<head>
+	<title>Thymeleaf JS • TodoMVC</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="icon" href="/images/favicon.ico"/>
+	<link rel="stylesheet" href="/styles/todo.min.css">
+
+	<script src="/scripts/todo.min.js" defer></script>
+</head>
+
+<body>
+	<section class="todoapp">
+		<header class="header">
+			<h1>todos</h1>
+			<input class="new-todo" placeholder="What needs to be done?" autofocus>
+		</header>
+
+		<!-- Todo list goes here -->
+		<div id="todo-list"></div>
+
+		<!-- Todo footer goes here -->
+		<div id="todo-footer"></div>
+
+	</section>
+	<footer class="info">
+		<p>Double-click to edit a todo</p>
+		<p>Created by <a href="http://www.ultraq.net.nz/">Emanuel Rabina</a></p>
+		<p>Part of <a href="http://todomvc.com">TodoMVC</a> (well, not really...)</p>
+	</footer>
+</body>
+
+</html>
