@@ -14,15 +14,6 @@
  * limitations under the License.
  */
 
-/* Base styles as prescribed by the TodoMVC template */
-/* -------------------------------------------------------------------------- */
-
-@import '../../node_modules/todomvc-common/base.css';
-@import '../../node_modules/todomvc-app-css/index.css';
-
-
-/* Overrides for this app */
-/* -------------------------------------------------------------------------- */
-
-@import 'todo.destroy.css';
-@import 'todo.toggle.css';
+.destroy {
+	cursor: pointer;
+}
