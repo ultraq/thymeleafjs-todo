@@ -15,6 +15,30 @@
  */
 
 /**
+ * Create a new todo item at the server.
+ *
+ * @param {String} value
+ * @return {Promise}
+ */
+export function createTodo(value) {
+
+	return fetch('/todos', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			value
+		})
+	})
+		.then(response => {
+			if (response.ok) {
+				return response.headers.get('Location').substring(7);
+			}
+		});
+}
+
+/**
  * Update the todo item at the server.
  * 
  * @param {String} id
@@ -24,8 +48,8 @@
  */
 export function updateTodo(id, value, status) {
 
-	return fetch(`/todo/${id}`, {
-		method: 'PATCH',
+	return fetch(`/todos/${id}`, {
+		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json'
 		},

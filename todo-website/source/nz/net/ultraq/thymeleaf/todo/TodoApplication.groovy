@@ -16,8 +16,11 @@
 
 package nz.net.ultraq.thymeleaf.todo
 
+import static nz.net.ultraq.thymeleaf.todo.Status.*
+
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
 
 /**
  * Configuration and starting point for the Thymeleaf JS TodoMVC example app.
@@ -35,5 +38,21 @@ class TodoApplication {
 	static void main(String[] args) {
 
 		SpringApplication.run(TodoApplication, args)
+	}
+
+	/**
+	 * Our "in-memory database" of todo items.
+	 * 
+	 * @return List of hard-coded todo items.
+	 */
+	@Bean
+	List<Todo> todos() {
+
+		return [
+			new Todo('Create a JavaScript version of Thymeleaf', COMPLETED),
+			new Todo('Write an Express integration module', COMPLETED),
+			new Todo('Make an example app for "Thymeleaf JS"'),
+			new Todo('Mention said example app... somewhere')
+		]
 	}
 }

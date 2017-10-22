@@ -27,6 +27,7 @@ dependencies {
 		'org.springframework.boot:spring-boot-starter-thymeleaf',
 		'org.springframework.boot:spring-boot-starter-web',
 
+		'javax.inject:javax.inject:1',
 		'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.2.2',
 		'org.codehaus.groovy:groovy:2.4.12',
 		'org.thymeleaf:thymeleaf:3.0.8.RELEASE',

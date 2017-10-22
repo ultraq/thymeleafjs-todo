@@ -16,25 +16,30 @@
 
 import {editMode,
         markCompleted,
-        readMode}         from './Actions';
-import {addEventDelegate} from './Dom';
-import {updateTodo}       from './TodoApi';
+        readMode}           from './Actions';
+import {addEventDelegate}   from './Dom';
+import {createTodo,
+        updateTodo}         from './TodoApi';
+import todoListItemTemplate from '../../../todo-website/source/templates/todo-list-item.html';
 
 // import 'todomvc-common/base';
-import {$}     from 'dumb-query-selector';
-import keycode from 'keycode';
+import {$}                      from 'dumb-query-selector';
+import keycode                  from 'keycode';
+import {TemplateEngine,
+        STANDARD_CONFIGURATION} from 'thymeleaf';
 
+
+let templateEngine = new TemplateEngine(STANDARD_CONFIGURATION);
 let todoList = $('.todo-list');
 
 // Toggle a todo item as completed/active when the tick is clicked
 addEventDelegate(todoList, 'click', '.toggle', event => {
 	let {target} = event;
 	let todo = target.closest('.todo');
-	let {todoId} = todo.dataset;
 
-	markCompleted(todoId);
+	markCompleted(todo);
 
-	updateTodo(todoId,
+	updateTodo(todo.dataset.todoId,
 		$('.view', todo).textContent.trim(),
 		target.checked ? 'COMPLETED' : 'ACTIVE');
 });
@@ -43,7 +48,6 @@ addEventDelegate(todoList, 'click', '.toggle', event => {
 addEventDelegate(todoList, 'dblclick', 'label', event => {
 	let {target} = event;
 	let todo = target.closest('.todo');
-	let {todoId} = todo.dataset;
 
 	editMode(todo);
 	let input = $('.edit', todo);
@@ -51,7 +55,7 @@ addEventDelegate(todoList, 'dblclick', 'label', event => {
 
 	function exitEditModeAndUpdateTodo() {
 		readMode(todo);
-		updateTodo(todoId,
+		updateTodo(todo.dataset.todoId,
 			$('.edit', todo).value,
 			target.checked ? 'COMPLETED' : 'ACTIVE');
 		input.removeEventListener('keypress', onEnter);
@@ -69,4 +73,27 @@ addEventDelegate(todoList, 'dblclick', 'label', event => {
 
 	input.addEventListener('keypress', onEnter);
 	input.addEventListener('blur', onBlur)
+});
+
+// Create new todo items
+$('.new-todo').addEventListener('keypress', event => {
+	if (keycode(event) === 'enter') {
+		let {target} = event;
+		let {value} = target;
+		if (value && value.trim()) {
+			createTodo(value)
+				.then(todoId => {
+					return templateEngine.process(todoListItemTemplate, {
+						todo: {
+							id: todoId,
+							value
+						}
+					});
+				})
+				.then(templateAsString => {
+					todoList.insertAdjacentHTML('beforeend', templateAsString);
+				});
+			target.value = '';
+		}
+	}
 });

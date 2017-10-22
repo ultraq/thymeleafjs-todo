@@ -11,6 +11,15 @@ module.exports = {
 				test: /\.js$/,
 				include: path.resolve(__dirname, 'scripts'),
 				use: 'babel-loader'
+			},
+			{
+				test: /\.js$/,
+				use: 'source-map-loader',
+				enforce: 'pre'
+			},
+			{
+				test: /\.html$/,
+				use: 'html-loader'
 			}
 		]
 	},

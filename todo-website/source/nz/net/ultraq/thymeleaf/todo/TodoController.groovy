@@ -16,33 +16,25 @@
 
 package nz.net.ultraq.thymeleaf.todo
 
-import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import static nz.net.ultraq.thymeleaf.todo.Status.*
 
-import org.springframework.web.bind.annotation.ResponseStatus
 import static org.springframework.web.bind.annotation.RequestMethod.*
 
+import javax.inject.Inject
+
 /**
- * Controller for the TodoMVC app.  For this example app, this is the only
- * 'layer' there is - no services, repositories, databases, etc.  All the
- * server-side app logic is in here.
+ * Page controller for the TodoMVC app.
  * 
  * @author Emanuel Rabina
  */
 @Controller
 class TodoController {
 
-	private List<Todo> todos = [
-		new Todo('Create a JavaScript version of Thymeleaf', COMPLETED),
-		new Todo('Write an Express integration module', COMPLETED),
-		new Todo('Make an example app for "Thymeleaf JS"'),
-		new Todo('Mention said example app... somewhere')
-	]
+	@Inject
+	private List<Todo> todos
 
 	/**
 	 * Serve the single-page app.  Renders the initial view on the server.  Any
@@ -58,20 +50,5 @@ class TodoController {
 		model.addAttribute('activeTodos', todos.findAll { todo -> todo.status == ACTIVE })
 		model.addAttribute('completedTodos', todos.findAll { todo -> todo.status == COMPLETED })
 		return 'index'
-	}
-
-	/**
-	 * Update an existing todo item.
-	 * 
-	 * @param todoId
-	 * @param todo
-	 */
-	@RequestMapping(value = '/todo/{todoId}', method = PATCH)
-	@ResponseStatus(HttpStatus.OK)
-	void updateTodo(@PathVariable String todoId, @RequestBody Todo updatedTodo) {
-
-		def todo = todos.find { todo -> todo.id == todoId }
-		todo.value  = updatedTodo.value
-		todo.status = updatedTodo.status
 	}
 }
