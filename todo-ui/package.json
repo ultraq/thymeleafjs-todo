@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"dumb-query-selector": "^3.2.0",
+		"keycode": "^2.1.9",
 		"thymeleaf": "^0.7.1",
     "todomvc-app-css": "^2.0.0",
     "todomvc-common": "^1.0.0"

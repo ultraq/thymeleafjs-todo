@@ -14,29 +14,59 @@
  * limitations under the License.
  */
 
+import {editMode,
+        markCompleted,
+        readMode}         from './Actions';
+import {addEventDelegate} from './Dom';
+import {updateTodo}       from './TodoApi';
+
 // import 'todomvc-common/base';
-import {$} from 'dumb-query-selector';
+import {$}     from 'dumb-query-selector';
+import keycode from 'keycode';
+
+let todoList = $('.todo-list');
 
 // Toggle a todo item as completed/active when the tick is clicked
-$('.todo-list').addEventListener('click', event => {
+addEventDelegate(todoList, 'click', '.toggle', event => {
 	let {target} = event;
-	if (target.matches('.toggle')) {
-		let todo = target.closest('.todo');
+	let todo = target.closest('.todo');
+	let {todoId} = todo.dataset;
 
-		// Update DOM
-		todo.classList.toggle('completed');
+	markCompleted(todoId);
 
-		// Notify server
-		let {todoId} = todo.dataset;
-		fetch(`/todo/${todoId}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				value: $('.view', todo).textContent.trim(),
-				status: target.checked ? 'COMPLETED' : 'ACTIVE'
-			})
-		})
+	updateTodo(todoId,
+		$('.view', todo).textContent.trim(),
+		target.checked ? 'COMPLETED' : 'ACTIVE');
+});
+
+// Enter editing mode when item double-clicked
+addEventDelegate(todoList, 'dblclick', 'label', event => {
+	let {target} = event;
+	let todo = target.closest('.todo');
+	let {todoId} = todo.dataset;
+
+	editMode(todo);
+	let input = $('.edit', todo);
+	input.focus();
+
+	function exitEditModeAndUpdateTodo() {
+		readMode(todo);
+		updateTodo(todoId,
+			$('.edit', todo).value,
+			target.checked ? 'COMPLETED' : 'ACTIVE');
+		input.removeEventListener('keypress', onEnter);
+		input.removeEventListener('blur', onBlur);
 	}
+
+	function onEnter(event) {
+		if (keycode(event) === 'enter') {
+			exitEditModeAndUpdateTodo();
+		}
+	}
+	function onBlur(event) {
+		exitEditModeAndUpdateTodo();
+	}
+
+	input.addEventListener('keypress', onEnter);
+	input.addEventListener('blur', onBlur)
 });
