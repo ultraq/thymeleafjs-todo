@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.thymeleaf.todo
+package nz.net.ultraq.thymeleaf.todo.models
 
 /**
  * The status a todo item can be in.

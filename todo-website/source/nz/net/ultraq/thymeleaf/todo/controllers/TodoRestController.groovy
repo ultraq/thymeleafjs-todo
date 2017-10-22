@@ -14,7 +14,9 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.thymeleaf.todo
+package nz.net.ultraq.thymeleaf.todo.controllers
+
+import nz.net.ultraq.thymeleaf.todo.models.Todo
 
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -22,7 +24,6 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import static org.springframework.web.bind.annotation.RequestMethod.*
 
@@ -55,19 +56,32 @@ class TodoRestController {
 	}
 
 	/**
+	 * Delete a todo item.
+	 */
+	@RequestMapping(value = '/todos/{todoId}', method = DELETE)
+	ResponseEntity<Void> deleteTodo(@PathVariable String todoId) {
+
+		if (todos.removeAll { todo -> todo.id == todoId }) {
+			return new ResponseEntity<Void>(HttpStatus.OK)
+		}
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND)
+	}
+
+	/**
 	 * Update an existing todo item.
 	 * 
 	 * @param todoId
 	 * @param todo
 	 */
 	@RequestMapping(value = '/todos/{todoId}', method = PUT)
-	@ResponseStatus(HttpStatus.OK)
 	ResponseEntity<Void> updateTodo(@PathVariable String todoId, @RequestBody Todo updatedTodo) {
 
 		def todo = todos.find { todo -> todo.id == todoId }
-		todo.value  = updatedTodo.value
-		todo.status = updatedTodo.status
-
-		return new ResponseEntity<Void>(HttpStatus.OK)
+		if (todo) {
+			todo.value  = updatedTodo.value
+			todo.status = updatedTodo.status
+			return new ResponseEntity<Void>(HttpStatus.OK)
+		}
+		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND)
 	}
 }

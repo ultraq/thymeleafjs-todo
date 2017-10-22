@@ -39,6 +39,19 @@ export function createTodo(value) {
 }
 
 /**
+ * Delete a todo item from the server.
+ * 
+ * @param {String} id
+ * @return {Promise}
+ */
+export function deleteTodo(id) {
+
+	return fetch(`/todos/${id}`, {
+		method: 'DELETE'
+	});
+}
+
+/**
  * Update the todo item at the server.
  * 
  * @param {String} id

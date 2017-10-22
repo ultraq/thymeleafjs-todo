@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-package nz.net.ultraq.thymeleaf.todo
+package nz.net.ultraq.thymeleaf.todo.controllers
+
+import nz.net.ultraq.thymeleaf.todo.models.Todo
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
-import static nz.net.ultraq.thymeleaf.todo.Status.*
+import static nz.net.ultraq.thymeleaf.todo.models.Status.*
 
 import static org.springframework.web.bind.annotation.RequestMethod.*
 
@@ -31,7 +33,7 @@ import javax.inject.Inject
  * @author Emanuel Rabina
  */
 @Controller
-class TodoController {
+class TodoPageController {
 
 	@Inject
 	private List<Todo> todos

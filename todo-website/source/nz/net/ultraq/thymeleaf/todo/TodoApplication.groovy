@@ -16,7 +16,8 @@
 
 package nz.net.ultraq.thymeleaf.todo
 
-import static nz.net.ultraq.thymeleaf.todo.Status.*
+import nz.net.ultraq.thymeleaf.todo.models.Todo
+import static nz.net.ultraq.thymeleaf.todo.models.Status.*
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication

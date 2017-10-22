@@ -14,7 +14,7 @@ Requires Java 8 and Gradle to be installed on your machine.
 
 (Fork and) clone this repo to your computer.  From a terminal you can run this
 project by entering the following commands:
- 
+
 `gradle npmInstall` - installs packages required by the UI project
 
 `gradle build` - build UI and website projects
@@ -39,6 +39,10 @@ languages!  Booyah! 😁
 
 Lessons learned / caveats
 -------------------------
+
+(The following items I've raised as https://github.com/ultraq/thymeleaf-js/issues/13)
+
+### As at Thymeleaf JS 0.8.0
 
 In creating this, I did come across some things that made the goal of isomorphic
 templates a lot harder than I thought.  Firstly, because of the difference in
