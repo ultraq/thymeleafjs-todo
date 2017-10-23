@@ -33,8 +33,7 @@ export const markCompleted = todoId => (dispatch, state) => {
 
 	let todo = state.todos.find(todo => todo.id === todoId);
 	return updateTodo({
-		id: todo.id,
-		status: 'COMPLETED',
-		value: todo.value
+		...todo,
+		status: 'COMPLETED'
 	})(dispatch);
 };

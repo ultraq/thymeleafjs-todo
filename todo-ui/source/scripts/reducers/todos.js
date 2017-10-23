@@ -30,9 +30,8 @@ export default function(todos = initialTodos, action) {
 	switch (action.type) {
 		case UPDATE_TODO:
 			return todos.map(todo => ({
-				id: todo.id || action.todo.id,
-				status: todo.status || action.todo.status,
-				value: todo.value || action.todo.value
+				...todo,
+				...action.todo
 			}));
 	}
 	return todos;

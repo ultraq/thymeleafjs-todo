@@ -12,7 +12,7 @@ module.exports = function(env, args) {
 			rules: [
 				{
 					test: /\.js$/,
-					include: path.resolve(__dirname, 'scripts'),
+					include: path.resolve(__dirname, 'source/scripts'),
 					use: 'babel-loader'
 				},
 				{

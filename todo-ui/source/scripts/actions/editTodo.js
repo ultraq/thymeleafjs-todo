@@ -29,8 +29,7 @@ export const editTodo = (todoId, value) => (dispatch, state) => {
 
 	let todo = state.todos.find(todo => todo.id === todoId);
 	return updateTodo({
-		id: todo.id,
-		status: todo.status,
+		...todo,
 		value
 	})(dispatch);
 };
