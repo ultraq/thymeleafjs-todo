@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {CREATE_TODO} from '../actions/createTodo';
+import {DELETE_TODO} from '../actions/deleteTodo';
 import {UPDATE_TODO} from '../actions/updateTodo';
 
 import {$} from 'dumb-query-selector';
@@ -30,6 +32,10 @@ const initialTodos = JSON.parse($('#initial-todos').textContent);
 export default function(todos = initialTodos, action) {
 
 	switch (action.type) {
+		case CREATE_TODO:
+			return todos.concat(action.todo);
+		case DELETE_TODO:
+			return todos.filter(todo => todo.id !== action.todoId);
 		case UPDATE_TODO:
 			return todos.map(todo => todo.id === action.todo.id ? action.todo : todo);
 	}
