@@ -16,7 +16,7 @@
 
 import {createTodo}          from '../actions/createTodo';
 import {editTodo}            from '../actions/editTodo';
-import {markCompleted}       from '../actions/markCompleted';
+import {toggleCompleted}     from '../actions/toggleCompleted';
 import {addEventDelegate}    from '../utilities/Dom';
 import todoListItemsTemplate from '../../../../todo-website/source/templates/todo-list-items.html';
 
@@ -34,8 +34,10 @@ export default class TodoList {
 
 	/**
 	 * Create a new todo list component.
+	 * 
+	 * @param {Object} store
 	 */
-	constructor() {
+	constructor(store) {
 
 		let $todoList = $('#todo-list');
 
@@ -45,7 +47,7 @@ export default class TodoList {
 				let {target} = event;
 				let {value} = target;
 				if (value && value.trim()) {
-					createTodo(value);
+					store.dispatch(createTodo(value));
 					target.value = '';
 				}
 			}
@@ -55,7 +57,7 @@ export default class TodoList {
 		addEventDelegate($todoList, 'click', '.toggle', event => {
 			let {target} = event;
 			let $todo = target.closest('.todo');
-			markCompleted($todo.dataset.todoId);
+			store.dispatch(toggleCompleted($todo.dataset.todoId));
 		});
 
 		// Enter editing mode when item double-clicked
@@ -70,7 +72,7 @@ export default class TodoList {
 
 			function exitEditModeAndUpdateTodo() {
 				$todo.classList.remove('editing');
-				editTodo($todo.dataset.todoId, $input.value);
+				store.dispatch(editTodo($todo.dataset.todoId, $input.value));
 				$input.removeEventListener('keypress', onEnter);
 				$input.removeEventListener('blur', onBlur);
 			}

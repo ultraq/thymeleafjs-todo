@@ -25,9 +25,9 @@ import {updateTodo} from './updateTodo';
  *   A redux thunk for updating the server with the new value and then
  *   reflecting that in the store.
  */
-export const editTodo = (todoId, value) => (dispatch, state) => {
+export const editTodo = (todoId, value) => (dispatch, getState) => {
 
-	let todo = state.todos.find(todo => todo.id === todoId);
+	let todo = getState().todos.find(todo => todo.id === todoId);
 	return updateTodo({
 		...todo,
 		value

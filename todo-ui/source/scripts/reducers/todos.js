@@ -16,7 +16,9 @@
 
 import {UPDATE_TODO} from '../actions/updateTodo';
 
-const initialTodos = [];
+import {$} from 'dumb-query-selector';
+
+const initialTodos = JSON.parse($('#initial-todos').textContent);
 
 /**
  * Reducer for the todo list.
@@ -29,10 +31,7 @@ export default function(todos = initialTodos, action) {
 
 	switch (action.type) {
 		case UPDATE_TODO:
-			return todos.map(todo => ({
-				...todo,
-				...action.todo
-			}));
+			return todos.map(todo => todo.id === action.todo.id ? action.todo : todo);
 	}
 	return todos;
 }

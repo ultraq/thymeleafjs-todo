@@ -11,6 +11,9 @@
 	<link rel="stylesheet" href="/styles/todo.min.css">
 
 	<script src="/scripts/todo.min.js" defer></script>
+	<script id="initial-todos" type="application/json" th:inline="javascript">
+		/*[[${todos}]]*/
+	</script>
 </head>
 
 <body>

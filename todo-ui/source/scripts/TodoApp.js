@@ -35,7 +35,7 @@ export default class TodoApp {
 	 */
 	constructor(store, templateEngine) {
 
-		let todoList = new TodoList();
+		let todoList = new TodoList(store);
 		let $todoList = $('#todo-list');
 
 		// Redraw the list on change

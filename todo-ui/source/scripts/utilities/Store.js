@@ -15,17 +15,18 @@
  */
 
 /**
- * Observe the store for changes.  Taken from
+ * Observe the store for changes.  Adapted from
  * https://github.com/reactjs/redux/issues/303#issuecomment-125184409
  * 
  * @param {Object} store
  * @param {Function} select
  * @param {Function} onChange
  * @return {Function}
+ *   A function that lets the observer unsubscribe from store changes.
  */
 export function observeStore(store, select, onChange) {
 
-	let currentState;
+	let currentState = select(store.getState());
 
 	function handleChange() {
 		let nextState = select(store.getState());
@@ -35,8 +36,6 @@ export function observeStore(store, select, onChange) {
 		}
 	}
 
-	let unsubscribe = store.subscribe(handleChange);
-	handleChange();
-	return unsubscribe;
+	return store.subscribe(handleChange);
 }
 
