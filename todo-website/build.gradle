@@ -37,7 +37,3 @@ dependencies {
 		'org.springframework.boot:spring-boot-devtools'
 	)
 }
-
-build {
-	dependsOn ':todo-ui:build'
-}

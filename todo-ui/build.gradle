@@ -20,7 +20,7 @@ plugins {
 
 description = 'Front end component of the Thymeleaf JS TodoMVC example project'
 
-task build(type: NpmTask) {
+task build(type: NpmTask, dependsOn: npmInstall) {
 	args = ['run', 'build']
 }
 

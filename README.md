@@ -15,8 +15,6 @@ Requires Java 8 and Gradle to be installed on your machine.
 (Fork and) clone this repo to your computer.  From a terminal you can run this
 project by entering the following commands:
 
-`gradle npmInstall` - installs packages required by the UI project
-
 `gradle build` - build UI and website projects
 
 `gradle bootRun` - start the Todo app
