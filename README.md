@@ -3,8 +3,11 @@ Thymeleaf JS Todo
 =================
 
 Example project for showcasing [Thymeleaf JS](https://github.com/ultraq/thymeleaf-js).
-Based on the [TodoMVC](http://todomvc.com/) example application, uses the
-[TodoMVC app template](https://github.com/tastejs/todomvc-app-template).
+Based on the [TodoMVC](http://todomvc.com/) example application.
+
+Also acts as a good reason to put Thymeleaf JS through its paces and get a feel
+for how it is to develop with it in conjunction with the original Thymeleaf.
+Many things coming out of this project are informting Thymelaf JS development.
 
 
 Installation
