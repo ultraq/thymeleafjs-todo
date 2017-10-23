@@ -14,14 +14,25 @@
  * limitations under the License.
  */
 
-import {createStore}          from './Store';
-import {createTemplateEngine} from './TemplateEngine';
-import TodoApp                from './TodoApp';
+import {checkStatus} from '../utilities/Fetch';
 
+export const DELETE_TODO = 'DELETE_TODO';
 
-// App setup
-let templateEngine = createTemplateEngine();
-let store = createStore();
-
-// App start
-new TodoApp(store, templateEngine);
+/**
+ * Delete a todo item from the server.
+ * 
+ * @param {String} todoId
+ * @return {Promise}
+ */
+export const deleteTodo = todoId => dispatch => {
+	return fetch(`/todos/${todoId}`, {
+		method: 'DELETE'
+	})
+		.then(checkStatus)
+		.then(() => {
+			dispatch({
+				type: DELETE_TODO,
+				todoId
+			});
+		});
+};

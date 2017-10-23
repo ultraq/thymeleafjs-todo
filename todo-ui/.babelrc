@@ -1,5 +1,15 @@
 {
+	"presets": [
+		["env", {
+			"targets": {
+				"browsers": [
+					"last 5 chrome versions",
+					"last 5 firefox versions"
+				]
+			}
+		}]
+	],
 	"plugins": [
-		"transform-es2015-modules-commonjs"
+		"transform-object-rest-spread"
 	]
 }

@@ -14,35 +14,29 @@
  * limitations under the License.
  */
 
-import {$} from 'dumb-query-selector';
-
 /**
- * Mark the todo item as completed.
+ * Observe the store for changes.  Taken from
+ * https://github.com/reactjs/redux/issues/303#issuecomment-125184409
  * 
- * @param {Element} todo
+ * @param {Object} store
+ * @param {Function} select
+ * @param {Function} onChange
+ * @return {Function}
  */
-export function markCompleted(todo) {
+export function observeStore(store, select, onChange) {
 
-	todo.classList.toggle('completed');
+	let currentState;
+
+	function handleChange() {
+		let nextState = select(store.getState());
+		if (nextState !== currentState) {
+			currentState = nextState;
+			onChange(currentState);
+		}
+	}
+
+	let unsubscribe = store.subscribe(handleChange);
+	handleChange();
+	return unsubscribe;
 }
 
-/**
- * Go into editing mode for the todo item.
- * 
- * @param {Element} todo
- */
-export function editMode(todo) {
-
-	todo.classList.add('editing');
-}
-
-/**
- * Go into read-only mode for the todo item.
- * 
- * @param {Element} todo
- */
-export function readMode(todo) {
-
-	todo.classList.remove('editing');
-	$('.view label', todo).textContent = $('.edit', todo).value;
-}

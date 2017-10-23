@@ -20,8 +20,8 @@
 			<input class="new-todo" placeholder="What needs to be done?" autofocus>
 		</header>
 
-		<th:block th:insert="~{todo-list :: todo-list(${todos})}"/>
-		<th:block th:insert="~{todo-footer :: todo-footer(${todos})}"/>
+		<div id="todo-list" th:insert="~{todo-list :: todo-list(${todos})}"></div>
+		<div id="todo-footer" th:insert="~{todo-footer :: todo-footer(${todos})}"></div>
 
 	</section>
 	<footer class="info">

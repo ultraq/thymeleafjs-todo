@@ -14,14 +14,26 @@
  * limitations under the License.
  */
 
-import {createStore}          from './Store';
-import {createTemplateEngine} from './TemplateEngine';
-import TodoApp                from './TodoApp';
+import {UPDATE_TODO} from '../actions/updateTodo';
 
+const initialTodos = [];
 
-// App setup
-let templateEngine = createTemplateEngine();
-let store = createStore();
+/**
+ * Reducer for the todo list.
+ * 
+ * @param {Array} [todos=initialTodos]
+ * @param {Object} action
+ * @return {Array} Updated state.
+ */
+export default function(todos = initialTodos, action) {
 
-// App start
-new TodoApp(store, templateEngine);
+	switch (action.type) {
+		case UPDATE_TODO:
+			return todos.map(todo => ({
+				id: todo.id || action.todo.id,
+				status: todo.status || action.todo.status,
+				value: todo.value || action.todo.value
+			}));
+	}
+	return todos;
+}

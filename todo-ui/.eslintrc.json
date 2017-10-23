@@ -1,0 +1,16 @@
+{
+	"extends": [
+		"eslint:recommended",
+		"ultraq"
+	],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true
+		},
+		"ecmaVersion": 6
+	},
+	"env": {
+		"browser": true,
+		"es6": true
+	}
+}

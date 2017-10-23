@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-import {createStore}          from './Store';
-import {createTemplateEngine} from './TemplateEngine';
-import TodoApp                from './TodoApp';
-
-
-// App setup
-let templateEngine = createTemplateEngine();
-let store = createStore();
-
-// App start
-new TodoApp(store, templateEngine);
+/**
+ * Make sure the response from the server is an OK one, throwing an error if it
+ * isn't.
+ * 
+ * @param {Response} response
+ * @return {Response}
+ */
+export function checkStatus(response) {
+	if (!response.ok) {
+		throw new Error(`${response.code} - ${response.statusText}`);
+	}
+	return response;
+}

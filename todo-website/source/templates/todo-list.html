@@ -6,10 +6,6 @@
 	<input class="toggle-all" type="checkbox">
 	<label for="toggle-all">Mark all as complete</label>
 
-	<ul class="todo-list">
-		<th:block th:each="todo: ${todos}">
-			<th:block th:insert="~{todo-list-item :: todo-list-item(${todo})}"/>
-		</th:block>
-	</ul>
+	<th:block th:insert="~{todo-list-items :: todo-list-items(${todos})}"/>
 
 </section>

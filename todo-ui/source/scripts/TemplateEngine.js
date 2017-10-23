@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-import {createStore}          from './Store';
-import {createTemplateEngine} from './TemplateEngine';
-import TodoApp                from './TodoApp';
+import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
 
-
-// App setup
-let templateEngine = createTemplateEngine();
-let store = createStore();
-
-// App start
-new TodoApp(store, templateEngine);
+/**
+ * Create and configure the template engine for the todo app.
+ * 
+ * @return {Object}
+ */
+export function createTemplateEngine() {
+	return new TemplateEngine(STANDARD_CONFIGURATION);
+}

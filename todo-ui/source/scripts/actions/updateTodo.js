@@ -14,14 +14,31 @@
  * limitations under the License.
  */
 
-import {createStore}          from './Store';
-import {createTemplateEngine} from './TemplateEngine';
-import TodoApp                from './TodoApp';
+import {checkStatus} from '../utilities/Fetch';
 
+export const UPDATE_TODO = 'UPDATE_TODO';
 
-// App setup
-let templateEngine = createTemplateEngine();
-let store = createStore();
-
-// App start
-new TodoApp(store, templateEngine);
+/**
+ * Update the todo item at the server.
+ * 
+ * @param {Object} todo
+ * @return {Function}
+ *   A redux thunk which updates the todo item at the server before reflecting
+ *   the update to the store.
+ */
+export const updateTodo = todo => dispatch => {
+	return fetch(`/todos/${todo.id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(todo)
+	})
+		.then(checkStatus)
+		.then(() => {
+			dispatch({
+				type: UPDATE_TODO,
+				todo
+			});
+		});
+};

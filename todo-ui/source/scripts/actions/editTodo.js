@@ -14,14 +14,23 @@
  * limitations under the License.
  */
 
-import {createStore}          from './Store';
-import {createTemplateEngine} from './TemplateEngine';
-import TodoApp                from './TodoApp';
+import {updateTodo} from './updateTodo';
 
+/**
+ * Update the value of a todo item.
+ * 
+ * @param {String} todoId
+ * @param {String} value
+ * @return {Function}
+ *   A redux thunk for updating the server with the new value and then
+ *   reflecting that in the store.
+ */
+export const editTodo = (todoId, value) => (dispatch, state) => {
 
-// App setup
-let templateEngine = createTemplateEngine();
-let store = createStore();
-
-// App start
-new TodoApp(store, templateEngine);
+	let todo = state.todos.find(todo => todo.id === todoId);
+	return updateTodo({
+		id: todo.id,
+		status: todo.status,
+		value
+	})(dispatch);
+};

@@ -14,14 +14,19 @@
  * limitations under the License.
  */
 
-/**
- * Create a new todo item at the server.
- *
- * @param {String} value
- * @return {Promise}
- */
-export function createTodo(value) {
+import {checkStatus} from '../utilities/Fetch';
 
+export const CREATE_TODO = 'CREATE_TODO';
+
+/**
+ * Create a new todo item.
+ * 
+ * @param {String} value
+ * @return {Function}
+ *   A redux thunk for creating a new todo item at the server and updating the
+ *   state with it.
+ */
+export const createTodo = value => dispatch => {
 	return fetch('/todos', {
 		method: 'POST',
 		headers: {
@@ -31,44 +36,15 @@ export function createTodo(value) {
 			value
 		})
 	})
+		.then(checkStatus)
 		.then(response => {
-			if (response.ok) {
-				return response.headers.get('Location').substring(7);
-			}
+			dispatch({
+				type: CREATE_TODO,
+				todo: {
+					id: response.headers.get('Location').substring(7),
+					status: 'ACTIVE',
+					value
+				}
+			});
 		});
-}
-
-/**
- * Delete a todo item from the server.
- * 
- * @param {String} id
- * @return {Promise}
- */
-export function deleteTodo(id) {
-
-	return fetch(`/todos/${id}`, {
-		method: 'DELETE'
-	});
-}
-
-/**
- * Update the todo item at the server.
- * 
- * @param {String} id
- * @param {String} value
- * @param {String} status
- * @return {Promise}
- */
-export function updateTodo(id, value, status) {
-
-	return fetch(`/todos/${id}`, {
-		method: 'PUT',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			value,
-			status
-		})
-	})
-}
+};
