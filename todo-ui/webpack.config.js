@@ -39,4 +39,4 @@ module.exports = function(env, args) {
 		],
 		devtool: '#source-map'
 	};
-}
+};
