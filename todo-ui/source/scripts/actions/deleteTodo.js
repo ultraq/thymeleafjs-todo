@@ -24,7 +24,7 @@ export const DELETE_TODO = 'DELETE_TODO';
  * @param {String} todoId
  * @return {Promise}
  */
-export const deleteTodo = todoId => dispatch => {
+const deleteTodo = todoId => dispatch => {
 	return fetch(`/todos/${todoId}`, {
 		method: 'DELETE'
 	})
@@ -36,3 +36,5 @@ export const deleteTodo = todoId => dispatch => {
 			});
 		});
 };
+
+export default deleteTodo;

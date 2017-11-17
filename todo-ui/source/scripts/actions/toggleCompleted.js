@@ -26,7 +26,7 @@ import {$} from 'dumb-query-selector';
  *   A redux thunk for updating the server with the completion status and then
  *   reflecting that in the store.
  */
-export const toggleCompleted = todoId => (dispatch, getState) => {
+const toggleCompleted = todoId => (dispatch, getState) => {
 
 	// For instant feedback, although a re-render will do this anyway
 	$(`[data-todo-id="${todoId}"]`).classList.toggle('completed');
@@ -38,3 +38,5 @@ export const toggleCompleted = todoId => (dispatch, getState) => {
 		status: todo.status === 'COMPLETED' ? 'ACTIVE' : 'COMPLETED'
 	})(dispatch);
 };
+
+export default toggleCompleted;

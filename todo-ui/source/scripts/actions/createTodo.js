@@ -26,7 +26,7 @@ export const CREATE_TODO = 'CREATE_TODO';
  *   A redux thunk for creating a new todo item at the server and updating the
  *   state with it.
  */
-export const createTodo = value => dispatch => {
+const createTodo = value => dispatch => {
 	return fetch('/todos', {
 		method: 'POST',
 		headers: {
@@ -48,3 +48,5 @@ export const createTodo = value => dispatch => {
 			});
 		});
 };
+
+export default createTodo;

@@ -26,7 +26,7 @@ export const UPDATE_TODO = 'UPDATE_TODO';
  *   A redux thunk which updates the todo item at the server before reflecting
  *   the update to the store.
  */
-export const updateTodo = todo => dispatch => {
+const updateTodo = todo => dispatch => {
 	return fetch(`/todos/${todo.id}`, {
 		method: 'PUT',
 		headers: {
@@ -42,3 +42,5 @@ export const updateTodo = todo => dispatch => {
 			});
 		});
 };
+
+export default updateTodo;
