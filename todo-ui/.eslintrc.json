@@ -7,7 +7,7 @@
 		"ecmaFeatures": {
 			"experimentalObjectRestSpread": true
 		},
-		"ecmaVersion": 6
+		"ecmaVersion": 2017
 	},
 	"env": {
 		"browser": true,
