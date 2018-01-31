@@ -15,6 +15,7 @@
  */
 
 import createTodo         from '../actions/createTodo';
+import deleteTodo         from '../actions/deleteTodo';
 import editTodo           from '../actions/editTodo';
 import toggleCompleted    from '../actions/toggleCompleted';
 import {addEventDelegate} from '../utilities/Dom';
@@ -58,6 +59,13 @@ export default class TodoList {
 			let {target} = event;
 			let $todo = target.closest('.todo');
 			store.dispatch(toggleCompleted($todo.dataset.todoId));
+		});
+
+		// Delete a todo item when the X is clicked
+		addEventDelegate($todoList, 'click', '.destroy', event => {
+			let {target} = event;
+			let $todo = target.closest('.todo');
+			store.dispatch(deleteTodo($todo.dataset.todoId));
 		});
 
 		// Enter editing mode when item double-clicked
