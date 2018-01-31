@@ -22,20 +22,30 @@ module.exports = function(env, args) {
 				},
 				{
 					test: /\.html$/,
-					use: 'html-loader'
+					use: {
+						loader: 'html-loader',
+						options: {
+							attrs: false
+						}
+					}
 				}
 			]
+		},
+		resolve: {
+			alias: {
+				templates: path.resolve(__dirname, '../todo-website/source/templates')
+			}
 		},
 		plugins: [
 			new DefinePlugin({
 				'process.env.NODE_ENV': JSON.stringify('production')
-			}),
+			})/*,
 			new UglifyJsPlugin({
 				sourceMap: true,
 				uglifyOptions: {
 					mangle: false
 				}
-			})
+			})*/
 		],
 		devtool: '#source-map'
 	};

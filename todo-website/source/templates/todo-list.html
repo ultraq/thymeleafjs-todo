@@ -1,11 +1,14 @@
 <section class="main"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:thjs="http://www.thymeleafjs.org"
 	th:fragment="todo-list(todos)"
-	th:if="${todos.size() > 0}">
+	th:if="${todos.size() > 0}" thjs:if="${todos.length}">
 
 	<input class="toggle-all" type="checkbox">
 	<label for="toggle-all">Mark all as complete</label>
 
-	<th:block th:insert="~{todo-list-items :: todo-list-items(${todos})}"/>
+	<ul class="todo-list">
+		<li th:each="todo: ${todos}" th:insert="~{todo-list-item :: todo-list-item(${todos})}"></li>
+	</ul>
 
 </section>

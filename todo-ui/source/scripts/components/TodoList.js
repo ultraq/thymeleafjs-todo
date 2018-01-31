@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-import {createTodo}          from '../actions/createTodo';
-import {editTodo}            from '../actions/editTodo';
-import {toggleCompleted}     from '../actions/toggleCompleted';
-import {addEventDelegate}    from '../utilities/Dom';
-import todoListItemsTemplate from '../../../../todo-website/source/templates/todo-list-items.html';
+import createTodo         from '../actions/createTodo';
+import editTodo           from '../actions/editTodo';
+import toggleCompleted    from '../actions/toggleCompleted';
+import {addEventDelegate} from '../utilities/Dom';
+import todoListTemplate   from '../../../../todo-website/source/templates/todo-list.html';
 
 import {$}     from 'dumb-query-selector';
 import keycode from 'keycode';
@@ -101,7 +101,7 @@ export default class TodoList {
 	render(store, templateEngine) {
 
 		let {todos} = store.getState();
-		return templateEngine.process(todoListItemsTemplate, {
+		return templateEngine.process(todoListTemplate, {
 			todos
 		});
 	}
