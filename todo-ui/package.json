@@ -17,7 +17,7 @@
 		"keycode": "^2.1.9",
 		"redux": "^3.7.2",
 		"redux-thunk": "^2.2.0",
-		"thymeleaf": "^0.9.0",
+		"thymeleaf": "latest",
 		"todomvc-app-css": "^2.0.0",
 		"todomvc-common": "^1.0.0"
 	},
