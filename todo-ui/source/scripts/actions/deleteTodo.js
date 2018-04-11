@@ -22,7 +22,7 @@ export const DELETE_TODO = 'DELETE_TODO';
  * Delete a todo item from the server.
  * 
  * @param {String} todoId
- * @return {Promise}
+ * @return {Function}
  */
 const deleteTodo = todoId => dispatch => {
 	return fetch(`/todos/${todoId}`, {

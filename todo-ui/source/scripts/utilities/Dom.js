@@ -24,10 +24,8 @@
  * @param {Function} handler
  */
 export function addEventDelegate(element, eventName, selector, handler) {
-
 	element.addEventListener(eventName, event => {
-		let {target} = event;
-		if (target.matches(selector)) {
+		if (event.target.matches(selector)) {
 			handler(event);
 		}
 	});

@@ -16,8 +16,6 @@
 
 import updateTodo from './updateTodo';
 
-import {$} from 'dumb-query-selector';
-
 /**
  * Mark the selected todo item as completed.
  * 
@@ -27,14 +25,10 @@ import {$} from 'dumb-query-selector';
  *   reflecting that in the store.
  */
 const toggleCompleted = todoId => (dispatch, getState) => {
-
-	// For instant feedback, although a re-render will do this anyway
-	$(`[data-todo-id="${todoId}"]`).classList.toggle('completed');
-
 	let todo = getState().todos.find(todo => todo.id === todoId);
 	return updateTodo({
 		...todo,
-		completed: true,
+		completed: todo.status !== 'COMPLETED',
 		status: todo.status === 'COMPLETED' ? 'ACTIVE' : 'COMPLETED'
 	})(dispatch);
 };
