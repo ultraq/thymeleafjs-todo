@@ -24,7 +24,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
 
 /**
- * Configuration and starting point for the Thymeleaf JS TodoMVC example app.
+ * Configuration and starting point for the ThymeleafJS TodoMVC example app.
  * 
  * @author Emanuel Rabina
  */
@@ -52,7 +52,7 @@ class TodoApplication {
 		return [
 			new Todo('Create a JavaScript version of Thymeleaf', COMPLETED),
 			new Todo('Write an Express integration module', COMPLETED),
-			new Todo('Make an example app for "Thymeleaf JS"'),
+			new Todo('Make an example app for "ThymeleafJS"'),
 			new Todo('Mention said example app... somewhere')
 		]
 	}

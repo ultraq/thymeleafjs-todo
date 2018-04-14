@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-description = 'Example project for showcasing Thymeleaf JS'
+description = 'Example project for showcasing ThymeleafJS'
 allprojects {
-	version = '0.1.0'
+	version = '0.2.0'
 }

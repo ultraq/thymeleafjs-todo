@@ -40,7 +40,7 @@ class TodoPageController {
 
 	/**
 	 * Serve the single-page app.  Renders the initial view on the server.  Any
-	 * modifications are then done client-side using Thymeleaf JS.
+	 * modifications are then done client-side using ThymeleafJS.
 	 * 
 	 * @param model
 	 * @return {@code index} template.

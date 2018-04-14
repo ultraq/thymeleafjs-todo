@@ -18,9 +18,9 @@ Requires Java 8 and Gradle to be installed on your machine.
 (Fork and) clone this repo to your computer.  From a terminal you can run this
 project by entering the following commands:
 
-`gradle build` - build UI and website projects
+`./gradlew build` - build UI and website projects
 
-`gradle bootRun` - start the Todo app
+`./gradlew bootRun` - start the Todo app
 
 Once the app is running, visit http://localhost:8080/ in your browser and you
 should now be seeing the Todo app, powered by Spring Boot, Thymeleaf, and

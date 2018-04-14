@@ -16,24 +16,20 @@
 
 plugins {
 	id 'groovy'
-	id 'org.springframework.boot' version '1.5.8.RELEASE'
+	id 'org.springframework.boot' version '2.0.1.RELEASE'
 }
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/2.0.0/gradle-support.gradle'
+apply plugin: 'io.spring.dependency-management'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/2.1.0/gradle-support.gradle'
 
-description = 'Server side component of the Thymeleaf JS TodoMVC example project'
+description = 'Server side component of the ThymeleafJS TodoMVC example project'
 
 dependencies {
 	compile(
+		'org.springframework.boot:spring-boot-devtools',
 		'org.springframework.boot:spring-boot-starter-thymeleaf',
 		'org.springframework.boot:spring-boot-starter-web',
 
 		'javax.inject:javax.inject:1',
-		'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:2.2.2',
-		'org.codehaus.groovy:groovy:2.4.12',
-		'org.thymeleaf:thymeleaf:3.0.8.RELEASE',
-		'org.thymeleaf:thymeleaf-spring4:3.0.8.RELEASE'
-	)
-	runtime(
-		'org.springframework.boot:spring-boot-devtools'
+		'org.codehaus.groovy:groovy:2.4.15'
 	)
 }
