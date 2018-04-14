@@ -1,13 +1,13 @@
 
-Thymeleaf JS Todo
-=================
+ThymeleafJS Todo
+================
 
-Example project for showcasing [Thymeleaf JS](https://github.com/ultraq/thymeleaf-js).
+Example project for showcasing [ThymeleafJS](https://github.com/ultraq/thymeleafjs).
 Based on the [TodoMVC](http://todomvc.com/) example application.
 
-Also acts as a good reason to put Thymeleaf JS through its paces and get a feel
+Also acts as a good reason to put ThymeleafJS through its paces and get a feel
 for how it is to develop with it in conjunction with the original Thymeleaf.
-Many things coming out of this project are informting Thymelaf JS development.
+Many things coming out of this project are informing ThymelafJS development.
 
 
 Installation
@@ -24,54 +24,42 @@ project by entering the following commands:
 
 Once the app is running, visit http://localhost:8080/ in your browser and you
 should now be seeing the Todo app, powered by Spring Boot, Thymeleaf, and
-Thymeleaf JS.
+ThymeleafJS.
 
 
 Isomorphic templates
 --------------------
 
 Thymeleaf is used to render the initial HTML on the server and serve that up to
-your browser.  After that though, it's all JavaScript code and Thymeleaf JS to
-render new todo items as they get added, using the exact same template that
-Thymeleaf on the server side used to render those items.  No more having to
-manage the same template code in 2 templates using different templating
-languages!  Booyah! 😁
+your browser.  After that, it's all JavaScript code and ThymeleafJS to re-render
+the todo list as items get added/edited/removed/filtered, using the exact same
+templates that Thymeleaf on the server side used to render those items.  No more
+having to manage the same HTML code using vastly different server-side and
+client-side frameworks!  Booyah! 😁
 
 
 Lessons learned / caveats
 -------------------------
 
-(The following items I've raised as https://github.com/ultraq/thymeleaf-js/issues/13)
+The following items are being tracked in https://github.com/ultraq/thymeleafjs/issues/13
 
-### As at Thymeleaf JS 0.8.0
+### As of ThymeleafJS 0.10.0
 
-In creating this, I did come across some things that made the goal of isomorphic
-templates a lot harder than I thought.  Firstly, because of the difference in
-languages, I could only get a single template shared by both Thymeleaf on the
-server and Thymeleaf JS on the browser: the `todo-list-item.html` template.
-This is because it's a very "dumb" template that only outputs values from a very
-simple model.  The moment things got slightly more complex, like in the
-`todo-list.html` template, I could no longer share templates.
-
-The main problem was that the expression language used in the templates was
-originally for Java/Groovy.  eg: look at this attribute processor:
+In creating this, I did come across some things that made total template
+isomorphism a bit out of reach.  Because of the difference in data structures in
+Java vs JavaScript (Java collections and JavaScript arrays), the same expression
+for checking a collection/array length has to be different, eg:
 
 ```html
-<section ... th:if="${todos.size() > 0}">
-  ...
-</section>
+<!-- Java -->
+<div th:if="${items.size() > 0}">...</div>
+
+<!-- JavaScript -->
+<div thjs:if="${items.length}">...</div>
 ```
 
-It's a simple "render this element if the list of todos has at least 1 item in
-it", but that's code for Java.  Even though that expression isn't supported by
-Thymeleaf JS yet, JavaScript arrays/lists don't have a `size()` function, they
-have a `length` property instead.  So, if this were to be used by both libraries,
-2 attribute processors would need to be present:
-
-```html
-<section ... th:if="${todos.size() > 0}" thjs:if="${todos.length}">
-  ...
-</section>
-```
-
-😕
+ThymeleafJS is currently undergoing thinking and development to try resolve this
+difference so that the developer experience is as close to "write once" as
+possible.  As of 0.10.0, the solution has been to include both expressions on
+the element: ThymeleafJS will read any `thjs` attributes over `th` ones, so any
+expressions that need to be JS-specific can be written this way.
