@@ -1,11 +1,13 @@
 <footer class="footer"
 	xmlns:th="http://www.thymeleaf.org"
+	xmlns:thjs="http://www.thymeleafjs.org"
 	th:fragment="todo-footer(todos)"
-	th:if="${todos.size() > 0}">
+	th:if="${todos.size() > 0}" thjs:if="${todos.length}">
 
 	<span class="todo-count">
-		<strong th:text="${activeTodos.size()}">0</strong>
-		<th:block th:text="${activeTodos.size() == 1 ? 'item' : 'items'}">items</th:block>
+		<strong th:text="${activeTodos.size()}" thjs:text="${activeTodos.length}">0</strong>
+		<th:block th:text="${activeTodos.size()} == 1 ? 'item' : 'items'"
+			thjs:text="${activeTodos.length} === 1 ? 'item' : 'items'">items</th:block>
 		left
 	</span>
 
@@ -21,6 +23,10 @@
 		</li>
 	</ul>
 
-	<button class="clear-completed" th:if="${completedTodos.size() > 0}">Clear completed</button>
+	<button class="clear-completed"
+		th:if="${completedTodos.size() > 0}"
+		thjs:if="${completedTodos.length}">
+		Clear completed
+	</button>
 
 </footer>
