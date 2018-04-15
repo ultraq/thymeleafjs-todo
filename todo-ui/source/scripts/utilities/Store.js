@@ -38,4 +38,3 @@ export function observeStore(store, select, onChange) {
 
 	return store.subscribe(handleChange);
 }
-

@@ -20,24 +20,43 @@ import {UPDATE_TODO} from '../actions/updateTodo';
 
 import {$} from 'dumb-query-selector';
 
+/**
+ * @private
+ * @param {Array} todos
+ * @return {Object}
+ */
+function buildStateFromTodos(todos) {
+	return {
+		todos,
+		activeTodos: todos.filter(todo => todo.status === 'ACTIVE'),
+		completedTodos: todos.filter(todo => todo.status === 'COMPLETED')
+	};
+}
+
 const initialTodos = JSON.parse($('#initial-todos').textContent);
+const initialState = buildStateFromTodos(initialTodos);
 
 /**
  * Reducer for the todo list.
  * 
- * @param {Array} [todos=initialTodos]
+ * @param {Object} [state=initialState]
  * @param {Object} action
- * @return {Array} Updated state.
+ * @return {Object} Updated state.
  */
-export default function(todos = initialTodos, action) {
-
+export default function(state = initialState, action) {
 	switch (action.type) {
 		case CREATE_TODO:
-			return todos.concat(action.todo);
+			return buildStateFromTodos(
+				state.todos.concat(action.todo)
+			);
 		case DELETE_TODO:
-			return todos.filter(todo => todo.id !== action.todoId);
+			return buildStateFromTodos(
+				state.todos.filter(todo => todo.id !== action.todoId)
+			);
 		case UPDATE_TODO:
-			return todos.map(todo => todo.id === action.todo.id ? action.todo : todo);
+			return buildStateFromTodos(
+				state.todos.map(todo => todo.id === action.todo.id ? action.todo : todo)
+			);
 	}
-	return todos;
+	return state;
 }

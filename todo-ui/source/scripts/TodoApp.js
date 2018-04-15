@@ -14,10 +14,9 @@
  * limitations under the License.
  */
 
+import TodoFooter     from './components/TodoFooter';
 import TodoList       from './components/TodoList';
 import {observeStore} from './utilities/Store';
-
-import {$} from 'dumb-query-selector';
 
 /**
  * Overall controller of the TodoMVC app.
@@ -30,20 +29,18 @@ export default class TodoApp {
 	 * Start the app with the given redux store that contains the initial state of
 	 * todo items on the page.
 	 * 
-	 * @param {Object} store
-	 * @param {Object} templateEngine
+	 * @param {Store} store
+	 * @param {TemplateEngine} templateEngine
 	 */
 	constructor(store, templateEngine) {
 
 		let todoList = new TodoList(store);
-		let $todoList = $('#todo-list');
+		let todoFooter = new TodoFooter(store);
 
 		// Redraw the list on change
-		observeStore(store, state => state.todos, () => {
-			todoList.render(store, templateEngine)
-				.then(htmlString => {
-					$todoList.innerHTML = htmlString;
-				});
+		observeStore(store, state => state, context => {
+			todoList.render(templateEngine, context);
+			todoFooter.render(templateEngine, context);
 		});
 	}
 }

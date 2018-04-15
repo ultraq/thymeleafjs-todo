@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import ThymeleafView      from './thymeleaf/ThymeleafView';
 import createTodo         from '../actions/createTodo';
 import deleteTodo         from '../actions/deleteTodo';
 import editTodo           from '../actions/editTodo';
@@ -24,6 +25,8 @@ import todoListTemplate   from '../../../../todo-website/source/templates/todo-l
 import {$}     from 'dumb-query-selector';
 import keycode from 'keycode';
 
+const $todoList = $('#todo-list');
+
 /**
  * Todo list component, which is the main UI for the app.  Looks over actions
  * that aren't to do with individual todo items, and re-renders the todo list
@@ -31,7 +34,7 @@ import keycode from 'keycode';
  * 
  * @author Emanuel Rabina
  */
-export default class TodoList {
+export default class TodoList extends ThymeleafView {
 
 	/**
 	 * Create a new todo list component.
@@ -40,7 +43,7 @@ export default class TodoList {
 	 */
 	constructor(store) {
 
-		let $todoList = $('#todo-list');
+		super($todoList, todoListTemplate);
 
 		// Create new todo items
 		$('.new-todo').addEventListener('keypress', event => {
@@ -96,21 +99,6 @@ export default class TodoList {
 
 			$input.addEventListener('keypress', onEnter);
 			$input.addEventListener('blur', onBlur);
-		});
-	}
-
-	/**
-	 * Recreate the todo list, returning the HTML string of the new list.
-	 * 
-	 * @param {Object} store
-	 * @param {Object} templateEngine
-	 * @return {Promise}
-	 */
-	render(store, templateEngine) {
-
-		let {todos} = store.getState();
-		return templateEngine.process(todoListTemplate, {
-			todos
 		});
 	}
 }

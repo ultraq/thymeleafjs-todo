@@ -17,7 +17,6 @@
 import todos from './reducers/todos';
 
 import {applyMiddleware,
-        combineReducers,
         compose,
         createStore as createReduxStore} from 'redux';
 import thunk                             from 'redux-thunk';
@@ -27,14 +26,12 @@ import thunk                             from 'redux-thunk';
  * devtools extension for browsers.
  * 
  * @param {Object} initialState
- * @return {Object}
+ * @return {Store}
  */
-export function createStore(initialState = {}) {
+export function createStore(initialState) {
 	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 	return createReduxStore(
-		combineReducers({
-			todos
-		}),
+		todos,
 		initialState,
 		composeEnhancers(
 			applyMiddleware(thunk)

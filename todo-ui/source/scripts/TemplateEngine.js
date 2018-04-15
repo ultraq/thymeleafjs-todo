@@ -19,7 +19,7 @@ import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
 /**
  * Create and configure the template engine for the todo app.
  * 
- * @return {Object}
+ * @return {TemplateEngine}
  */
 export function createTemplateEngine() {
 	return new TemplateEngine(STANDARD_CONFIGURATION);
