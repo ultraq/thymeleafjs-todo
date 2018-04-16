@@ -37,6 +37,8 @@ import javax.inject.Inject
 @RestController
 class TodoRestController {
 
+	private static final Object todosLock = new Object()
+
 	@Inject
 	private List<Todo> todos
 
@@ -61,10 +63,12 @@ class TodoRestController {
 	@RequestMapping(value = '/todos/{todoId}', method = DELETE)
 	ResponseEntity<Void> deleteTodo(@PathVariable String todoId) {
 
-		if (todos.removeAll { todo -> todo.id == todoId }) {
-			return new ResponseEntity<Void>(HttpStatus.OK)
+		synchronized (todosLock) {
+			if (todos.removeAll { todo -> todo.id == todoId }) {
+				return new ResponseEntity<Void>(HttpStatus.OK)
+			}
+			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND)
 		}
-		return new ResponseEntity<Void>(HttpStatus.NOT_FOUND)
 	}
 
 	/**

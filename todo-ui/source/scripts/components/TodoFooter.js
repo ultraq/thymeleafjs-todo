@@ -15,6 +15,8 @@
  */
 
 import ThymeleafView      from './thymeleaf/ThymeleafView';
+import clearCompleted     from '../actions/clearCompleted';
+import {addEventDelegate} from '../utilities/Dom';
 import todoFooterTemplate from '../../../../todo-website/source/templates/todo-footer.html';
 
 import {$} from 'dumb-query-selector';
@@ -36,5 +38,11 @@ export default class TodoFooter extends ThymeleafView {
 	constructor(store) {
 
 		super($todoFooter, todoFooterTemplate);
+
+		// Clear completed todo items
+		addEventDelegate($todoFooter, 'click', '.clear-completed', event => {
+			let {completedTodos} = store.getState();
+			store.dispatch(clearCompleted(completedTodos));
+		});
 	}
 }

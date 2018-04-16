@@ -25,7 +25,7 @@ import thunk                             from 'redux-thunk';
  * Create a redux store for the todo app.  Includes integration with the redux
  * devtools extension for browsers.
  * 
- * @param {Object} initialState
+ * @param {Object} [initialState]
  * @return {Store}
  */
 export function createStore(initialState) {
