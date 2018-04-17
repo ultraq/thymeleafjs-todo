@@ -19,13 +19,11 @@ import deleteTodo from './deleteTodo';
 /**
  * Clear all completed todo items from the list (deletes them).
  * 
- * @param {Array} completedTodos
  * @return {Function}
  */
-const clearCompleted = (completedTodos) => dispatch => {
+export default () => (dispatch, getState) => {
+	let {completedTodos} = getState();
 	return Promise.all(completedTodos.map(completedTodo => {
 		return dispatch(deleteTodo(completedTodo.id));
 	}));
 };
-
-export default clearCompleted;

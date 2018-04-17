@@ -1,5 +1,5 @@
 /* 
- * Copyright 2017, Emanuel Rabina (http://www.ultraq.net.nz/)
+ * Copyright 2018, Emanuel Rabina (http://www.ultraq.net.nz/)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,21 +14,32 @@
  * limitations under the License.
  */
 
-import updateTodo from './updateTodo';
+import Filter from '../utilities/Filter';
+
+export const APPLY_FILTER = 'APPLY_FILTER';
+
+export const NO_FILTER = new Filter(
+	todo => todo,
+	'none'
+);
+
+export const ACTIVE_FILTER = new Filter(
+	todo => todo.status === 'ACTIVE',
+	'active'
+);
+
+export const COMPLETED_FILTER = new Filter(
+	todo => todo.status === 'COMPLETED',
+	'completed'
+);
 
 /**
- * Update the value of a todo item.
+ * Set the given filter over the todo list.
  * 
- * @param {String} todoId
- * @param {String} value
- * @return {Function}
- *   A redux thunk for updating the server with the new value and then
- *   reflecting that in the store.
+ * @param {Filter} filter
+ * @return {Object}
  */
-export default (todoId, value) => (dispatch, getState) => {
-	let todo = getState().todos.find(todo => todo.id === todoId);
-	return updateTodo({
-		...todo,
-		value
-	})(dispatch);
-};
+export default filter => ({
+	type: APPLY_FILTER,
+	filter
+});

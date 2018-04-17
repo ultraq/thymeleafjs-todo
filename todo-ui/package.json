@@ -13,6 +13,7 @@
 		"watch:styles": "chokidar \"source/styles/**/*.less\" -c \"npm run build:styles\""
 	},
 	"dependencies": {
+		"director": "^1.2.8",
 		"dumb-query-selector": "^3.2.0",
 		"keycode": "^2.1.9",
 		"redux": "^3.7.2",

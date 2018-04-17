@@ -14,9 +14,15 @@
  * limitations under the License.
  */
 
+import applyFilter, {
+	ACTIVE_FILTER,
+	COMPLETED_FILTER,
+	NO_FILTER}          from './actions/applyFilter';
 import TodoFooter     from './components/TodoFooter';
 import TodoList       from './components/TodoList';
 import {observeStore} from './utilities/Store';
+
+import {Router} from 'director/build/director';
 
 /**
  * Overall controller of the TodoMVC app.
@@ -42,5 +48,13 @@ export default class TodoApp {
 			todoList.render(templateEngine, context);
 			todoFooter.render(templateEngine, context);
 		});
+
+		// Routing to filter the list
+		let router = new Router({
+			'/':          () => store.dispatch(applyFilter(NO_FILTER)),
+			'/active':    () => store.dispatch(applyFilter(ACTIVE_FILTER)),
+			'/completed': () => store.dispatch(applyFilter(COMPLETED_FILTER))
+		});
+		router.init();
 	}
 }

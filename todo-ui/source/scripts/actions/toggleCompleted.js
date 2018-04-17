@@ -24,7 +24,7 @@ import updateTodo from './updateTodo';
  *   A redux thunk for updating the server with the completion status and then
  *   reflecting that in the store.
  */
-const toggleCompleted = todoId => (dispatch, getState) => {
+export default todoId => (dispatch, getState) => {
 	let todo = getState().todos.find(todo => todo.id === todoId);
 	return updateTodo({
 		...todo,
@@ -32,5 +32,3 @@ const toggleCompleted = todoId => (dispatch, getState) => {
 		status: todo.status === 'COMPLETED' ? 'ACTIVE' : 'COMPLETED'
 	})(dispatch);
 };
-
-export default toggleCompleted;

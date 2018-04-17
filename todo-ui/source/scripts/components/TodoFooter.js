@@ -41,8 +41,7 @@ export default class TodoFooter extends ThymeleafView {
 
 		// Clear completed todo items
 		addEventDelegate($todoFooter, 'click', '.clear-completed', event => {
-			let {completedTodos} = store.getState();
-			store.dispatch(clearCompleted(completedTodos));
+			store.dispatch(clearCompleted());
 		});
 	}
 }
