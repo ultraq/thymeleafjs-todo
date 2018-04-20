@@ -2,7 +2,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:thjs="http://www.thymeleafjs.org"
 	th:fragment="todo-footer(todos)"
-	th:if="${todos.size() > 0}" thjs:if="${todos.length}">
+	th:if="${todos.size() > 0}" thjs:if="${allTodos.length}">
 
 	<span class="todo-count">
 		<strong th:text="${activeTodos.size()}" thjs:text="${activeTodos.length}">0</strong>
