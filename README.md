@@ -13,7 +13,7 @@ Many things coming out of this project are informing ThymelafJS development.
 Installation
 ------------
 
-Requires Java 8 and Gradle to be installed on your machine.
+Requires Java 8+ and Node 6+ to be installed on your machine.
 
 (Fork and) clone this repo to your computer.  From a terminal you can run this
 project by entering the following commands:
