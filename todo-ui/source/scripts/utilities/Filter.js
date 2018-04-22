@@ -21,9 +21,9 @@
  */
 export default class Filter {
 
-	constructor(func, name) {
+	constructor(name, func) {
 
-		this.func = func;
 		this.name = name;
+		this.func = func;
 	}
 }

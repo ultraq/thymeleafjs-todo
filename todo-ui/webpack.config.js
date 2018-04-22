@@ -1,11 +1,10 @@
 /* eslint-env node */
 'use strict';
 
-const path           = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const {DefinePlugin} = require('webpack');
+const path = require('path');
 
 module.exports = {
+	mode: 'development',
 	entry: './source/scripts/Todo.js',
 	module: {
 		rules: [
@@ -21,12 +20,7 @@ module.exports = {
 			},
 			{
 				test: /\.html$/,
-				use: {
-					loader: 'html-loader',
-					options: {
-						attrs: false
-					}
-				}
+				use: 'raw-loader'
 			}
 		]
 	},
@@ -35,16 +29,5 @@ module.exports = {
 			templates: path.resolve(__dirname, '../todo-website/source/templates')
 		}
 	},
-	plugins: [
-		new DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('production')
-		}),
-		new UglifyJsPlugin({
-			sourceMap: true,
-			uglifyOptions: {
-				mangle: false
-			}
-		})
-	],
 	devtool: '#source-map'
 };

@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
+import {observeStore} from './Store';
 import applyFilter, {
 	ACTIVE_FILTER,
 	COMPLETED_FILTER,
 	NO_FILTER}          from './actions/applyFilter';
 import TodoFooter     from './components/TodoFooter';
 import TodoList       from './components/TodoList';
-import {observeStore} from './utilities/Store';
 
 import {Router} from 'director/build/director';
 

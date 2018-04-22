@@ -19,18 +19,18 @@ import Filter from '../utilities/Filter';
 export const APPLY_FILTER = 'APPLY_FILTER';
 
 export const NO_FILTER = new Filter(
-	todo => todo,
-	'none'
+	'none',
+	todo => todo
 );
 
 export const ACTIVE_FILTER = new Filter(
-	todo => todo.status === 'ACTIVE',
-	'active'
+	'active',
+	todo => todo.status === 'ACTIVE'
 );
 
 export const COMPLETED_FILTER = new Filter(
-	todo => todo.status === 'COMPLETED',
-	'completed'
+	'completed',
+	todo => todo.status === 'COMPLETED'
 );
 
 /**

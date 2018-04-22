@@ -22,5 +22,11 @@ import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
  * @return {TemplateEngine}
  */
 export function createTemplateEngine() {
-	return new TemplateEngine(STANDARD_CONFIGURATION);
+	return new TemplateEngine({
+		...STANDARD_CONFIGURATION,
+		templateResolver: templateName => {
+			/* global require */
+			return Promise.resolve(require(`templates/${templateName}.html`));
+		}
+	});
 }
