@@ -26,7 +26,7 @@ export function createTemplateEngine() {
 		...STANDARD_CONFIGURATION,
 		templateResolver: templateName => {
 			/* global require */
-			return Promise.resolve(require(`templates/${templateName}.html`));
+			return require(`templates/${templateName}.html`);
 		}
 	});
 }
