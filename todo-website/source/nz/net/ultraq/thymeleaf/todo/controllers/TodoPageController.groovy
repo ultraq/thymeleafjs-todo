@@ -48,7 +48,7 @@ class TodoPageController {
 	@RequestMapping(value = '/', method = GET)
 	String index(Model model) {
 
-		model.addAttribute('filter', 'none')
+		model.addAttribute('filter', [name: 'none'])
 		model.addAttribute('todos', todos)
 		model.addAttribute('activeTodos', todos.findAll { todo -> todo.status == ACTIVE })
 		model.addAttribute('completedTodos', todos.findAll { todo -> todo.status == COMPLETED })

@@ -13,13 +13,13 @@
 
 	<ul class="filters">
 		<li>
-			<a href="#/" th:class="${filter} == 'none' ? 'selected'">All</a>
+			<a href="#/" th:class="${filter.name} == 'none' ? 'selected'">All</a>
 		</li>
 		<li>
-			<a href="#/active" th:class="${filter} == 'active' ? 'selected'">Active</a>
+			<a href="#/active" th:class="${filter.name} == 'active' ? 'selected'">Active</a>
 		</li>
 		<li>
-			<a href="#/completed" th:class="${filter} == 'completed' ? 'selected'">Completed</a>
+			<a href="#/completed" th:class="${filter.name} == 'completed' ? 'selected'">Completed</a>
 		</li>
 	</ul>
 
