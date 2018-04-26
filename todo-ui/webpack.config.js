@@ -6,6 +6,10 @@ const path = require('path');
 module.exports = {
 	mode: 'development',
 	entry: './source/scripts/Todo.js',
+	output: {
+		path: path.resolve(__dirname, '../todo-website/source/static/scripts'),
+		filename: 'todo.min.js'
+	},
 	module: {
 		rules: [
 			{

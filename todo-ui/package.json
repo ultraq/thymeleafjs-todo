@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "mkdirp ../todo-website/source/static && npm run build:images && npm run build:scripts && npm run build:styles",
 		"build:images": "ncp source/images ../todo-website/source/static/images",
-		"build:scripts": "webpack --output-path ../todo-website/source/static/scripts --output-filename todo.min.js",
+		"build:scripts": "webpack",
 		"build:styles": "postcss source/styles/todo.css --output ../todo-website/source/static/styles/todo.min.css --map",
 		"watch": "concurrently --kill-others \"npm run watch:scripts\" \"npm run watch:styles\"",
 		"watch:scripts": "chokidar \"source/scripts/**/*.js\" -c \"npm run build:scripts\"",
