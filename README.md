@@ -5,6 +5,8 @@ ThymeleafJS Todo
 Example project for showcasing [ThymeleafJS](https://github.com/ultraq/thymeleafjs).
 Based on the [TodoMVC](http://todomvc.com/) example application.
 
+![demo](demo.gif)
+
 Also acts as a good reason to put ThymeleafJS through its paces and get a feel
 for how it is to develop with it in conjunction with the original Thymeleaf.
 Many things coming out of this project are informing ThymelafJS development.
@@ -31,11 +33,13 @@ Isomorphic templates
 --------------------
 
 Thymeleaf is used to render the initial HTML on the server and serve that up to
-your browser.  After that, it's all JavaScript code and ThymeleafJS to re-render
-the todo list as items get added/edited/removed/filtered, using the exact same
-templates that Thymeleaf on the server side used to render those items.  No more
-having to manage the same HTML code using vastly different server-side and
-client-side frameworks!  Booyah! 😁
+your browser.  After that, a combination of ThymeleafJS and REST endpoints are
+used to power the todo list.  Modifications to the list items are reflected back
+to the server (so you can reload the page and get the most recent state of
+things), while these same actions trigger client-side re-renders of the list
+using the exact same Thymeleaf templates used for the initial HTML.  No more
+full-page refreshes or having to manage the same HTML structures with different
+server-side and client-side frameworks! 😁
 
 
 Lessons learned / caveats
