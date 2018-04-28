@@ -9,8 +9,8 @@
 		"build:scripts": "webpack",
 		"build:styles": "postcss source/styles/todo.css --output ../todo-website/source/static/styles/todo.min.css --map",
 		"watch": "concurrently --kill-others \"npm run watch:scripts\" \"npm run watch:styles\"",
-		"watch:scripts": "chokidar \"source/scripts/**/*.js\" -c \"npm run build:scripts\"",
-		"watch:styles": "chokidar \"source/styles/**/*.less\" -c \"npm run build:styles\""
+		"watch:scripts": "npm run build:scripts -- --watch",
+		"watch:styles": "npm run build:styles -- --watch"
 	},
 	"dependencies": {
 		"director": "^1.2.8",
@@ -27,7 +27,6 @@
 		"babel-loader": "^7.1.2",
 		"babel-plugin-transform-object-rest-spread": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
-		"chokidar-cli": "^1.2.0",
 		"concurrently": "^3.5.0",
 		"cssnano": "^3.10.0",
 		"eslint": "^4.9.0",
