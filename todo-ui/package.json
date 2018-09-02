@@ -4,6 +4,7 @@
 	"description": "Front end component of the ThymeleafJS TodoMVC example project",
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
 	"scripts": {
+		"lint": "eslint '**/*.js'",
 		"build": "mkdirp ../todo-website/source/static && npm run build:images && npm run build:scripts && npm run build:styles",
 		"build:images": "ncp source/images ../todo-website/source/static/images",
 		"build:scripts": "webpack",
@@ -13,11 +14,12 @@
 		"watch:styles": "npm run build:styles -- --watch"
 	},
 	"dependencies": {
+		"@ultraq/redux-utils": "^0.1.0",
 		"director": "^1.2.8",
 		"dumb-query-selector": "^3.2.0",
 		"keycode": "^2.1.9",
-		"redux": "^3.7.2",
-		"redux-thunk": "^2.2.0",
+		"redux": "^4.0.0",
+		"redux-thunk": "^2.3.0",
 		"thymeleaf": "latest",
 		"todomvc-app-css": "^2.0.0",
 		"todomvc-common": "^1.0.0"

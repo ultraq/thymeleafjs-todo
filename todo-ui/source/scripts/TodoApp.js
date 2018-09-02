@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import {observeStore} from './Store';
 import applyFilter, {
 	ACTIVE_FILTER,
 	COMPLETED_FILTER,
@@ -22,6 +21,7 @@ import applyFilter, {
 import TodoFooter     from './components/TodoFooter';
 import TodoList       from './components/TodoList';
 
+import {observe} from '@ultraq/redux-utils';
 import {Router} from 'director/build/director';
 
 /**
@@ -44,7 +44,7 @@ export default class TodoApp {
 		let todoFooter = new TodoFooter(store);
 
 		// Redraw the list on change
-		observeStore(store, state => state, context => {
+		observe(store, state => state, context => {
 			todoList.render(templateEngine, context);
 			todoFooter.render(templateEngine, context);
 		});
