@@ -23,7 +23,3 @@ description = 'Front end component of the ThymeleafJS TodoMVC example project'
 task build(type: NpmTask, dependsOn: npmInstall) {
 	args = ['run', 'build']
 }
-
-task test(type: NpmTask) {
-	args = ['test']
-}
