@@ -17,14 +17,12 @@ Many things coming out of this project are informing ThymelafJS development.
 Installation
 ------------
 
-Requires Java 8+ and Node 6+ to be installed on your machine.
+Requires Java 8+ and Node 8+ to be installed on your machine.
 
 (Fork and) clone this repo to your computer.  From a terminal you can run this
-project by entering the following commands:
-
-`./gradlew build` - build UI and website projects
-
-`./gradlew bootRun` - start the Todo app
+project by running `./gradlew bootRun`.  That will run installation and build
+scripts for both the UI and website projects, then start an embedded server to
+host the app.
 
 Once the app is running, visit http://localhost:8080/ in your browser and you
 should now be seeing the Todo app, powered by Spring Boot, Thymeleaf, and

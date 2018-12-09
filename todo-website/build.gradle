@@ -33,3 +33,7 @@ dependencies {
 		'org.codehaus.groovy:groovy:2.4.15'
 	)
 }
+
+bootRun {
+	dependsOn ':todo-ui:build'
+}
