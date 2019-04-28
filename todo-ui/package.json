@@ -1,10 +1,10 @@
 {
 	"name": "todo-ui",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": "Front end component of the ThymeleafJS TodoMVC example project",
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
 	"scripts": {
-		"lint": "eslint '**/*.js'",
+		"lint": "eslint \"**/*.js\"",
 		"build": "mkdirp ../todo-website/source/static && npm run build:images && npm run build:scripts && npm run build:styles",
 		"build:images": "ncp source/images ../todo-website/source/static/images",
 		"build:scripts": "webpack",
@@ -14,6 +14,7 @@
 		"watch:styles": "npm run build:styles -- --watch"
 	},
 	"dependencies": {
+		"@ultraq/dom-utils": "^0.1.1",
 		"@ultraq/redux-utils": "^0.1.0",
 		"director": "^1.2.8",
 		"dumb-query-selector": "^3.2.0",
@@ -31,7 +32,7 @@
 		"babel-preset-env": "^1.7.0",
 		"concurrently": "^3.6.1",
 		"cssnano": "^4.1.7",
-		"eslint": "^4.9.0",
+		"eslint": "^5.16.0",
 		"eslint-config-ultraq": "^2.2.0",
 		"mkdirp": "^0.5.1",
 		"ncp": "^2.0.0",

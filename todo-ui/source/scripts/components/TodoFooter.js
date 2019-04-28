@@ -16,10 +16,10 @@
 
 import ThymeleafView      from './thymeleaf/ThymeleafView';
 import clearCompleted     from '../actions/clearCompleted';
-import {addEventDelegate} from '../utilities/Dom';
 import todoFooterTemplate from '../../../../todo-website/source/templates/todo-footer.html';
 
-import {$} from 'dumb-query-selector';
+import {addEventDelegate} from '@ultraq/dom-utils';
+import {$}                from 'dumb-query-selector';
 
 const $todoFooter = $('#todo-footer');
 

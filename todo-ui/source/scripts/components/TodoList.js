@@ -19,11 +19,11 @@ import createTodo         from '../actions/createTodo';
 import deleteTodo         from '../actions/deleteTodo';
 import editTodo           from '../actions/editTodo';
 import toggleCompleted    from '../actions/toggleCompleted';
-import {addEventDelegate} from '../utilities/Dom';
 import todoListTemplate   from '../../../../todo-website/source/templates/todo-list.html';
 
-import {$}     from 'dumb-query-selector';
-import keycode from 'keycode';
+import {addEventDelegate} from '@ultraq/dom-utils';
+import {$}                from 'dumb-query-selector';
+import keycode            from 'keycode';
 
 const $todoList = $('#todo-list');
 
