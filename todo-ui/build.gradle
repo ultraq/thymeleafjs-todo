@@ -15,11 +15,12 @@
  */
 
 plugins {
+	id 'base'
 	id 'com.moowork.node' version '1.2.0'
 }
 
 description = 'Front end component of the ThymeleafJS TodoMVC example project'
 
-task build(type: NpmTask, dependsOn: npmInstall) {
-	args = ['run', 'build']
+assemble {
+	dependsOn npm_run_build
 }
