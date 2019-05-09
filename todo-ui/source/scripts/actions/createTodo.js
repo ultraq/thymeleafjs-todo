@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {checkStatus} from '../utilities/Fetch';
+import {checkStatus} from '@ultraq/fetch-utils';
 
 export const CREATE_TODO = 'CREATE_TODO';
 

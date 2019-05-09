@@ -15,6 +15,7 @@
 	},
 	"dependencies": {
 		"@ultraq/dom-utils": "^0.1.1",
+		"@ultraq/fetch-utils": "^0.1.0",
 		"@ultraq/redux-utils": "^0.1.0",
 		"director": "^1.2.8",
 		"dumb-query-selector": "^3.2.0",
