@@ -5,26 +5,33 @@
 	th:if="${todos.size() > 0}" thjs:if="${allTodos.length}">
 
 	<span class="todo-count">
-		<strong th:text="${activeTodos.size()}" thjs:text="${activeTodos.length}">0</strong>
-		<th:block th:text="${activeTodos.size()} == 1 ? 'item' : 'items'"
-			thjs:text="${activeTodos.length} === 1 ? 'item' : 'items'">items</th:block>
-		left
+		<!-- TODO: Should look into some pluralization format, like ICU, to clean this up -->
+		<th:block th:if="${activeTodos.size()} == 1" thjs:if="${activeTodos.length} === 1"
+			th:text="#{list.items-left-singular(${activeTodos.size()})}"
+			thjs:text="#{list.items-left-singular(${activeTodos.length})}">X item left</th:block>
+		<th:block th:if="${activeTodos.size()} != 1" thjs:if="${activeTodos.length} !== 1"
+			th:text="#{list.items-left-plural(${activeTodos.size()})}"
+			thjs:text="#{list.items-left-plural(${activeTodos.length})}">X items left</th:block>
 	</span>
 
 	<ul class="filters">
 		<li>
-			<a href="#/" th:class="${filter.name} == 'none' ? 'selected'">All</a>
+			<a href="#/" th:class="${filter.name} == 'none' ? 'selected'"
+				th:text="#{list.select-all}">Select all</a>
 		</li>
 		<li>
-			<a href="#/active" th:class="${filter.name} == 'active' ? 'selected'">Active</a>
+			<a href="#/active" th:class="${filter.name} == 'active' ? 'selected'"
+				th:text="#{list.select-active}">Select active</a>
 		</li>
 		<li>
-			<a href="#/completed" th:class="${filter.name} == 'completed' ? 'selected'">Completed</a>
+			<a href="#/completed" th:class="${filter.name} == 'completed' ? 'selected'"
+				th:text="#{list.select-completed}">Select completed</a>
 		</li>
 	</ul>
 
 	<button class="clear-completed"
 		th:if="${completedTodos.size() > 0}"
+		th:text="#{list.clear-completed}"
 		thjs:if="${completedTodos.length}">
 		Clear completed
 	</button>

@@ -23,13 +23,14 @@ module.exports = {
 				enforce: 'pre'
 			},
 			{
-				test: /\.html$/,
+				test: /\.(html|properties)$/,
 				use: 'raw-loader'
 			}
 		]
 	},
 	resolve: {
 		alias: {
+			messages: path.resolve(__dirname, '../todo-website/source/'),
 			templates: path.resolve(__dirname, '../todo-website/source/templates')
 		}
 	},

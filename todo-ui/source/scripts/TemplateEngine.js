@@ -14,18 +14,29 @@
  * limitations under the License.
  */
 
+import {parse} from './utilities/Properties.js';
+
+import {format}                                 from '@ultraq/string-utils';
 import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
+
+let messages;
 
 /**
  * Create and configure the template engine for the todo app.
  * 
  * @return {TemplateEngine}
  */
+/* global require */
 export function createTemplateEngine() {
 	return new TemplateEngine({
 		...STANDARD_CONFIGURATION,
+		messageResolver: (key, parameters) => {
+			if (!messages) {
+				messages = parse(require('messages/messages.properties'));
+			}
+			return format(messages[key], parameters);
+		},
 		templateResolver: templateName => {
-			/* global require */
 			return require(`templates/${templateName}.html`);
 		}
 	});

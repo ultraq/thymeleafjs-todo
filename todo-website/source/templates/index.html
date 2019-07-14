@@ -3,7 +3,7 @@
 	lang="en">
 
 <head>
-	<title>ThymeleafJS • TodoMVC</title>
+	<title th:text="#{app.title}">ThymeleafJS • TodoMVC</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,8 +19,9 @@
 <body>
 	<section class="todoapp">
 		<header class="header">
-			<h1>todos</h1>
-			<input class="new-todo" placeholder="What needs to be done?" autofocus>
+			<h1 th:text="#{page.title}">todos</h1>
+			<input class="new-todo" placeholder="What needs to be done?" autofocus
+				th:placeholder="#{page.placeholder}">
 		</header>
 
 		<div id="todo-list" th:insert="~{todo-list :: todo-list(${todos})}"></div>
@@ -28,9 +29,9 @@
 
 	</section>
 	<footer class="info">
-		<p>Double-click to edit a todo</p>
-		<p>Created by <a href="http://www.ultraq.net.nz/">Emanuel Rabina</a></p>
-		<p>Part of <a href="http://todomvc.com">TodoMVC</a> (well, not really...)</p>
+		<p th:text="#{page.instructions}">Instructions</p>
+		<p th:utext="#{page.author}">Created by</p>
+		<p th:utext="#{page.attribution}">Part of TodoMVC</p>
 	</footer>
 </body>
 
