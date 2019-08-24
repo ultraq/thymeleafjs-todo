@@ -25,7 +25,7 @@ description = 'Server side component of the ThymeleafJS TodoMVC example project'
 
 repositories {
 	maven {
-		url 'https://jitpack.io'
+		url 'https://dl.bintray.com/tkvw/plugins'
 	}
 }
 
@@ -35,7 +35,7 @@ dependencies {
 		'org.springframework.boot:spring-boot-starter-thymeleaf',
 		'org.springframework.boot:spring-boot-starter-web',
 
-		'com.github.meticoeus:spring-icu:0.2.0',
+		'org.grails.plugins:icu:1.0',
 		'javax.inject:javax.inject:1',
 		'org.codehaus.groovy:groovy:2.4.15'
 	)

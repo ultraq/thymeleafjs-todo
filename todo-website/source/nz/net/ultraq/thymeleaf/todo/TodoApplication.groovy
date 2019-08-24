@@ -19,8 +19,8 @@ package nz.net.ultraq.thymeleaf.todo
 import nz.net.ultraq.thymeleaf.todo.models.Todo
 import static nz.net.ultraq.thymeleaf.todo.models.Status.*
 
-import com.devtrigger.grails.icu.ICUMessageSource
-import com.devtrigger.grails.icu.ICUReloadableResourceBundleMessageSource
+import org.grails.plugins.icu.ICUMessageSource
+import org.grails.plugins.icu.ICUReloadableResourceBundleMessageSource
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
@@ -44,8 +44,8 @@ class TodoApplication {
 	}
 
 	/**
-	 * Use https://github.com/meticoeus/spring-icu to handle ICU message format in
-	 * our message files.
+	 * Uses the Grails ICU plugin to handle the ICU message format in our message
+	 * files.
 	 */
 	@Bean
 	ICUMessageSource messageSource() {
