@@ -24,6 +24,7 @@ apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/2.1.0/gradl
 description = 'Server side component of the ThymeleafJS TodoMVC example project'
 
 repositories {
+	jcenter()
 	maven {
 		url 'https://dl.bintray.com/tkvw/plugins'
 	}
@@ -35,10 +36,13 @@ dependencies {
 		'org.springframework.boot:spring-boot-starter-thymeleaf',
 		'org.springframework.boot:spring-boot-starter-web',
 
-		'org.grails.plugins:icu:1.0',
 		'javax.inject:javax.inject:1',
-		'org.codehaus.groovy:groovy:2.4.15'
+		'org.codehaus.groovy:groovy:2.4.15',
+		'org.grails:grails-core:4.0.0'
 	)
+	compile('org.grails.plugins:icu:1.0') {
+		exclude group: 'com.bertramlabs.plugins'
+	}
 }
 
 bootRun {
