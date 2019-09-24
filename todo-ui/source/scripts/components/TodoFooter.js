@@ -14,34 +14,45 @@
  * limitations under the License.
  */
 
-import ThymeleafView      from './thymeleaf/ThymeleafView';
+import ThymeleafComponent from './thymeleaf/ThymeleafComponent.js';
+import {connect}          from '../ThymeleafRedux.js';
 import clearCompleted     from '../actions/clearCompleted';
 import todoFooterTemplate from '../../../../todo-website/source/templates/todo-footer.html';
 
 import {addEventDelegate} from '@ultraq/dom-utils';
 import {$}                from 'dumb-query-selector';
 
-const $todoFooter = $('#todo-footer');
-
 /**
  * Looks after the info and navigation items in the footer of the todo list.
  * 
  * @author Emanuel Rabina
  */
-export default class TodoFooter extends ThymeleafView {
+export class TodoFooter extends ThymeleafComponent {
 
 	/**
 	 * Create a new todo footer component.
 	 * 
-	 * @param {Object} store
+	 * @param {Object} props
+	 * @param {Object} context
 	 */
-	constructor(store) {
+	constructor(props, {templateEngine}) {
 
-		super($todoFooter, todoFooterTemplate);
+		let $todoFooter = $('#todo-footer');
+
+		super(props, templateEngine, todoFooterTemplate, $todoFooter);
 
 		// Clear completed todo items
 		addEventDelegate($todoFooter, 'click', '.clear-completed', event => {
-			store.dispatch(clearCompleted());
+			let {clearCompleted} = props;
+			clearCompleted();
 		});
 	}
 }
+
+export default connect(
+	state => state,
+	{
+		clearCompleted
+	},
+	TodoFooter
+);

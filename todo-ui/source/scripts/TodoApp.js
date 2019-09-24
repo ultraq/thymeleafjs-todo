@@ -41,12 +41,16 @@ export default class TodoApp {
 	constructor(store, templateEngine) {
 
 		let todoList = new TodoList(store);
-		let todoFooter = new TodoFooter(store);
+		// let todoFooter = new TodoFooter(store);
+		new TodoFooter(store.getState(), {
+			templateEngine,
+			store
+		});
 
 		// Redraw the list on change
 		observe(store, state => state, context => {
 			todoList.render(templateEngine, context);
-			todoFooter.render(templateEngine, context);
+			// todoFooter.render(templateEngine, context);
 		});
 
 		// Routing to filter the list

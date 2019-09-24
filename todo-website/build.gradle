@@ -43,6 +43,9 @@ dependencies {
 	compile('org.grails.plugins:icu:1.0') {
 		exclude group: 'com.bertramlabs.plugins'
 	}
+	runtimeOnly(
+		'org.springframework.boot:spring-boot-devtools'
+	)
 }
 
 bootRun {
