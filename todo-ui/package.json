@@ -1,6 +1,6 @@
 {
 	"name": "todo-ui",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"description": "Front end component of the ThymeleafJS TodoMVC example project",
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
 	"scripts": {
@@ -16,16 +16,16 @@
 	"dependencies": {
 		"@ultraq/dom-utils": "^0.2.0",
 		"@ultraq/fetch-utils": "^1.0.0",
+		"@ultraq/icu-message-formatter": "^0.4.1",
 		"@ultraq/redux-utils": "^0.2.0",
-		"@ultraq/string-utils": "^2.0.0",
 		"director": "^1.2.8",
 		"dumb-query-selector": "^3.2.0",
 		"keycode": "^2.1.9",
 		"redux": "^4.0.1",
 		"redux-thunk": "^2.3.0",
 		"thymeleaf": "^0.18.1",
-		"todomvc-app-css": "^2.1.2",
-		"todomvc-common": "^1.0.0"
+		"todomvc-app-css": "^2.3.0",
+		"todomvc-common": "^1.0.5"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.9.6",

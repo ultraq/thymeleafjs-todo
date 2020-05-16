@@ -16,10 +16,12 @@
 
 import {parse} from './utilities/Properties.js';
 
-import {format}                                 from '@ultraq/string-utils';
-import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
-
-let messages;
+import MessageFormatter  from '@ultraq/icu-message-formatter';
+import pluralTypeHandler from '@ultraq/icu-message-formatter/lib/pluralTypeHandler';
+import {
+	TemplateEngine,
+	STANDARD_CONFIGURATION
+}                        from 'thymeleaf';
 
 /**
  * Create and configure the template engine for the todo app.
@@ -28,13 +30,19 @@ let messages;
  */
 /* global require */
 export function createTemplateEngine() {
+
+	const messageFormatter = new MessageFormatter({
+		plural: pluralTypeHandler
+	});
+	let messages;
+
 	return new TemplateEngine({
 		...STANDARD_CONFIGURATION,
 		messageResolver: (key, parameters) => {
 			if (!messages) {
 				messages = parse(require('messages/messages.properties'));
 			}
-			return format(messages[key], parameters);
+			return messageFormatter.format(messages[key], parameters, 'en-NZ');
 		},
 		templateResolver: templateName => {
 			return require(`templates/${templateName}.html`);

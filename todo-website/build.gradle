@@ -23,15 +23,32 @@ apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/3.1.3/gradl
 
 description = 'Server side component of the ThymeleafJS TodoMVC example project'
 
+repositories {
+	jcenter()
+	maven {
+		url 'https://dl.bintray.com/tkvw/plugins'
+	}
+}
+
 dependencies {
 	implementation(
 		'org.springframework.boot:spring-boot-devtools',
 		'org.springframework.boot:spring-boot-starter-thymeleaf',
 		'org.springframework.boot:spring-boot-starter-web',
 
+		'com.ibm.icu:icu4j:67.1',
 		'javax.inject:javax.inject:1',
 		'org.codehaus.groovy:groovy:3.0.3'
 	)
+	implementation('org.grails:grails-core:4.0.1') {
+		transitive = false
+	}
+	implementation('org.grails:grails-bootstrap:4.0.1') {
+		transitive = false
+	}
+	implementation('org.grails.plugins:icu:1.0') {
+		transitive = false
+	}
 }
 
 bootRun {

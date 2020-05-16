@@ -16,5 +16,5 @@
 
 description = 'Example project for showcasing ThymeleafJS'
 allprojects {
-	version = '0.3.0'
+	version = '0.4.0'
 }

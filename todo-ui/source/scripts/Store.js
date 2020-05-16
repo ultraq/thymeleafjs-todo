@@ -18,8 +18,8 @@ import todos from './reducers/todos';
 
 import {
 	applyMiddleware,
-  compose,
-  createStore as createReduxStore
+	compose,
+	createStore as createReduxStore
 } from 'redux';
 import thunk from 'redux-thunk';
 
