@@ -12,15 +12,15 @@
 
 	<ul class="filters">
 		<li>
-			<a href="#/" th:class="${filter.name} == 'none' ? 'selected'"
+			<a href="#/" th:class="${filter} == 'none' ? 'selected'"
 				th:text="#{list.select-all}">Select all</a>
 		</li>
 		<li>
-			<a href="#/active" th:class="${filter.name} == 'active' ? 'selected'"
+			<a href="#/active" th:class="${filter} == 'active' ? 'selected'"
 				th:text="#{list.select-active}">Select active</a>
 		</li>
 		<li>
-			<a href="#/completed" th:class="${filter.name} == 'completed' ? 'selected'"
+			<a href="#/completed" th:class="${filter} == 'completed' ? 'selected'"
 				th:text="#{list.select-completed}">Select completed</a>
 		</li>
 	</ul>

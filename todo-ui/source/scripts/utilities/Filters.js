@@ -14,16 +14,25 @@
  * limitations under the License.
  */
 
+export const NO_FILTER = 'NO_FILTER';
+
+export const ACTIVE_FILTER = 'ACTIVE_FILTER';
+
+export const COMPLETED_FILTER = 'COMPLETED_FILTER';
+
 /**
- * The joint name and function of a filter over the todo list.
+ * Return the list of todos with the given filter applied.
  * 
- * @author Emanuel Rabina
+ * @param {Array} todos
+ * @param {String} filter
+ * @return {Array}
  */
-export default class Filter {
-
-	constructor(name, func) {
-
-		this.name = name;
-		this.func = func;
+export function filterTodos(todos, filter) {
+	switch (filter) {
+		case ACTIVE_FILTER:
+			return todos.filter(todo => todo.status === 'ACTIVE');
+		case COMPLETED_FILTER:
+			return todos.filter(todo => todo.status === 'COMPLETED');
 	}
+	return todos;
 }

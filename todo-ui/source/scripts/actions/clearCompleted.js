@@ -14,7 +14,11 @@
  * limitations under the License.
  */
 
-import deleteTodo from './deleteTodo';
+import deleteTodo from './deleteTodo.js';
+import {
+	COMPLETED_FILTER,
+	filterTodos
+}                 from '../utilities/Filters.js';
 
 /**
  * Clear all completed todo items from the list (deletes them).
@@ -22,7 +26,7 @@ import deleteTodo from './deleteTodo';
  * @return {Function}
  */
 export default () => (dispatch, getState) => {
-	let {completedTodos} = getState();
+	let completedTodos = filterTodos(getState().todos, COMPLETED_FILTER);
 	return Promise.all(completedTodos.map(completedTodo => {
 		return dispatch(deleteTodo(completedTodo.id));
 	}));

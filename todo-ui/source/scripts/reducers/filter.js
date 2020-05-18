@@ -1,5 +1,5 @@
 /* 
- * Copyright 2018, Emanuel Rabina (http://www.ultraq.net.nz/)
+ * Copyright 2020, Emanuel Rabina (http://www.ultraq.net.nz/)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,32 +14,26 @@
  * limitations under the License.
  */
 
-import Filter from '../utilities/Filter';
+import {NO_FILTER} from '../utilities/Filters.js';
 
-export const APPLY_FILTER = 'APPLY_FILTER';
+const SET_FILTER = 'SET_FILTER';
 
-export const NO_FILTER = new Filter(
-	'none',
-	todo => todo
-);
-
-export const ACTIVE_FILTER = new Filter(
-	'active',
-	todo => todo.status === 'ACTIVE'
-);
-
-export const COMPLETED_FILTER = new Filter(
-	'completed',
-	todo => todo.status === 'COMPLETED'
-);
-
-/**
- * Set the given filter over the todo list.
- * 
- * @param {Filter} filter
- * @return {Object}
- */
-export default filter => ({
-	type: APPLY_FILTER,
+export const setFilter = (filter) => ({
+	type: SET_FILTER,
 	filter
 });
+
+/**
+ * Reducer for storing the filter applied to the todo list.
+ * 
+ * @param {String} [state]
+ * @param {Object} action
+ * @return {String}
+ */
+export default function(state = NO_FILTER, action) {
+	switch (action.type) {
+		case SET_FILTER:
+			return action.filter;
+	}
+	return state;
+}

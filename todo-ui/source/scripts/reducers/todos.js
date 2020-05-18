@@ -14,61 +14,29 @@
  * limitations under the License.
  */
 
-import {APPLY_FILTER, NO_FILTER} from '../actions/applyFilter';
-import {CREATE_TODO} from '../actions/createTodo';
-import {DELETE_TODO} from '../actions/deleteTodo';
-import {UPDATE_TODO} from '../actions/updateTodo';
+import {CREATE_TODO} from '../actions/createTodo.js';
+import {DELETE_TODO} from '../actions/deleteTodo.js';
+import {UPDATE_TODO} from '../actions/updateTodo.js';
 
 import {$} from 'dumb-query-selector';
 
-/**
- * @private
- * @param {Array} todos
- * @param {Filter} [filter=NO_FILTER]
- * @return {Object}
- */
-function buildStateFromTodos(todos, filter = NO_FILTER) {
-	return {
-		todos: todos.filter(filter.func),
-		filter,
-		allTodos: todos,
-		activeTodos: todos.filter(todo => todo.status === 'ACTIVE'),
-		completedTodos: todos.filter(todo => todo.status === 'COMPLETED')
-	};
-}
-
-const initialTodos = JSON.parse($('#initial-todos').textContent);
-const initialState = buildStateFromTodos(initialTodos);
+const initialState = JSON.parse($('#initial-todos').textContent);
 
 /**
  * Reducer for the todo list.
  * 
- * @param {Object} [state=initialState]
+ * @param {Array} [state=initialState]
  * @param {Object} action
- * @return {Object} Updated state.
+ * @return {Array} Updated state.
  */
 export default function(state = initialState, action) {
 	switch (action.type) {
 		case CREATE_TODO:
-			return buildStateFromTodos(
-				state.allTodos.concat(action.todo),
-				state.filter
-			);
+			return state.concat(action.todo);
 		case DELETE_TODO:
-			return buildStateFromTodos(
-				state.allTodos.filter(todo => todo.id !== action.todoId),
-				state.filter
-			);
+			return state.filter(todo => todo.id !== action.todoId);
 		case UPDATE_TODO:
-			return buildStateFromTodos(
-				state.allTodos.map(todo => todo.id === action.todo.id ? action.todo : todo),
-				state.filter
-			);
-		case APPLY_FILTER:
-			return buildStateFromTodos(
-				state.allTodos,
-				action.filter
-			);
+			return state.map(todo => todo.id === action.todo.id ? action.todo : todo);
 	}
 	return state;
 }

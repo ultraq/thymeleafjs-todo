@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-import todos from './reducers/todos';
+import filter from './reducers/filter.js';
+import todos  from './reducers/todos.js';
 
 import {
 	applyMiddleware,
+	combineReducers,
 	compose,
 	createStore as createReduxStore
-} from 'redux';
+}            from 'redux';
 import thunk from 'redux-thunk';
 
 /**
@@ -33,7 +35,10 @@ import thunk from 'redux-thunk';
 export function createStore(initialState) {
 	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 	return createReduxStore(
-		todos,
+		combineReducers({
+			filter,
+			todos
+		}),
 		initialState,
 		composeEnhancers(
 			applyMiddleware(thunk)
