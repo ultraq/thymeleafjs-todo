@@ -17,13 +17,7 @@
 import filter from './reducers/filter.js';
 import todos  from './reducers/todos.js';
 
-import {
-	applyMiddleware,
-	combineReducers,
-	compose,
-	createStore as createReduxStore
-}            from 'redux';
-import thunk from 'redux-thunk';
+import {configureStore} from '@reduxjs/toolkit';
 
 /**
  * Create a redux store for the todo app.  Includes integration with the redux
@@ -33,15 +27,11 @@ import thunk from 'redux-thunk';
  * @return {Store}
  */
 export function createStore(initialState) {
-	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-	return createReduxStore(
-		combineReducers({
+	return configureStore({
+		preloadedState: initialState,
+		reducer: {
 			filter,
 			todos
-		}),
-		initialState,
-		composeEnhancers(
-			applyMiddleware(thunk)
-		)
-	);
+		}
+	});
 }

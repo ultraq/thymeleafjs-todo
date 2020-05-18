@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import {checkStatus} from '@ultraq/fetch-utils';
+import {deleteTodo} from '../reducers/todos.js';
 
-export const DELETE_TODO = 'DELETE_TODO';
+import {checkStatus} from '@ultraq/fetch-utils';
 
 /**
  * Delete a todo item from the server.
@@ -30,9 +30,6 @@ export default todoId => dispatch => {
 	})
 		.then(checkStatus)
 		.then(() => {
-			dispatch({
-				type: DELETE_TODO,
-				todoId
-			});
+			dispatch(deleteTodo(todoId));
 		});
 };

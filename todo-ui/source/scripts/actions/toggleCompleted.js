@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import updateTodo from './updateTodo';
+import updateTodo from './updateTodo.js';
 
 /**
  * Mark the selected todo item as completed.

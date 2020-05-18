@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-import {CREATE_TODO} from '../actions/createTodo.js';
-import {DELETE_TODO} from '../actions/deleteTodo.js';
-import {UPDATE_TODO} from '../actions/updateTodo.js';
-
-import {$} from 'dumb-query-selector';
+import {createSlice} from '@reduxjs/toolkit';
+import {$}           from 'dumb-query-selector';
 
 const initialState = JSON.parse($('#initial-todos').textContent);
 
@@ -29,14 +26,15 @@ const initialState = JSON.parse($('#initial-todos').textContent);
  * @param {Object} action
  * @return {Array} Updated state.
  */
-export default function(state = initialState, action) {
-	switch (action.type) {
-		case CREATE_TODO:
-			return state.concat(action.todo);
-		case DELETE_TODO:
-			return state.filter(todo => todo.id !== action.todoId);
-		case UPDATE_TODO:
-			return state.map(todo => todo.id === action.todo.id ? action.todo : todo);
+const todosSlice = createSlice({
+	name: 'todos',
+	initialState,
+	reducers: {
+		createTodo: (state, {payload: todo}) => state.concat(todo),
+		deleteTodo: (state, {payload: todoId}) => state.filter(todo => todo.id !== todoId),
+		updateTodo: (state, {payload: todo}) => state.map(t => t.id === todo.id ? todo : t)
 	}
-	return state;
-}
+});
+
+export const {createTodo, deleteTodo, updateTodo} = todosSlice.actions;
+export default todosSlice.reducer;

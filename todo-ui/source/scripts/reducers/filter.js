@@ -16,12 +16,7 @@
 
 import {NO_FILTER} from '../utilities/Filters.js';
 
-const SET_FILTER = 'SET_FILTER';
-
-export const setFilter = (filter) => ({
-	type: SET_FILTER,
-	filter
-});
+import {createSlice} from '@reduxjs/toolkit';
 
 /**
  * Reducer for storing the filter applied to the todo list.
@@ -30,10 +25,13 @@ export const setFilter = (filter) => ({
  * @param {Object} action
  * @return {String}
  */
-export default function(state = NO_FILTER, action) {
-	switch (action.type) {
-		case SET_FILTER:
-			return action.filter;
+const filterSlice = createSlice({
+	name: 'filter',
+	initialState: NO_FILTER,
+	reducers: {
+		setFilter: (state, {payload: filter}) => filter
 	}
-	return state;
-}
+});
+
+export const {setFilter} = filterSlice.actions;
+export default filterSlice.reducer;

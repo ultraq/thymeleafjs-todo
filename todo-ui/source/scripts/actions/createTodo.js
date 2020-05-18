@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import {checkStatus} from '@ultraq/fetch-utils';
+import {createTodo} from '../reducers/todos.js';
 
-export const CREATE_TODO = 'CREATE_TODO';
+import {checkStatus} from '@ultraq/fetch-utils';
 
 /**
  * Create a new todo item.
@@ -38,13 +38,10 @@ export default value => dispatch => {
 	})
 		.then(checkStatus)
 		.then(response => {
-			dispatch({
-				type: CREATE_TODO,
-				todo: {
-					id: response.headers.get('Location').substring(7),
-					status: 'ACTIVE',
-					value
-				}
-			});
+			dispatch(createTodo({
+				id: response.headers.get('Location').substring(7),
+				status: 'ACTIVE',
+				value
+			}));
 		});
 };

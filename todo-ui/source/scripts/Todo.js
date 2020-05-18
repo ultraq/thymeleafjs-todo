@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import {createStore}          from './Store';
-import {createTemplateEngine} from './TemplateEngine';
-import TodoApp                from './TodoApp';
+import {createStore}          from './Store.js';
+import {createTemplateEngine} from './TemplateEngine.js';
+import TodoApp                from './TodoApp.js';
 
 
 // App setup

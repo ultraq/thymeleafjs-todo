@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-import {checkStatus} from '@ultraq/fetch-utils';
+import {updateTodo} from '../reducers/todos.js';
 
-export const UPDATE_TODO = 'UPDATE_TODO';
+import {checkStatus} from '@ultraq/fetch-utils';
 
 /**
  * Update the todo item at the server.
@@ -36,9 +36,6 @@ export default todo => dispatch => {
 	})
 		.then(checkStatus)
 		.then(() => {
-			dispatch({
-				type: UPDATE_TODO,
-				todo
-			});
+			dispatch(updateTodo(todo));
 		});
 };
