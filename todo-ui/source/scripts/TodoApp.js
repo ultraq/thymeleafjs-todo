@@ -18,8 +18,9 @@ import TodoFooter  from './components/TodoFooter.js';
 import TodoList    from './components/TodoList.js';
 import {setFilter} from './reducers/filter.js';
 import {
+	filterTodos,
 	ACTIVE_FILTER,
-	COMPLETED_FILTER, filterTodos,
+	COMPLETED_FILTER,
 	NO_FILTER
 }                  from './utilities/Filters.js';
 
@@ -46,13 +47,13 @@ export default class TodoApp {
 		let todoFooter = new TodoFooter(store);
 
 		// Redraw the list on change
-		observe(store, state => state, state => {
+		observe(store, state => state, ({filter, todos}) => {
 			let context = {
-				filter: state.filter,
-				todos: filterTodos(state.todos, state.filter),
-				allTodos: state.todos,
-				activeTodos: filterTodos(state.todos, ACTIVE_FILTER),
-				completedTodos: filterTodos(state.todos, COMPLETED_FILTER)
+				filter,
+				todos: filterTodos(todos, filter),
+				allTodos: todos,
+				activeTodos: filterTodos(todos, ACTIVE_FILTER),
+				completedTodos: filterTodos(todos, COMPLETED_FILTER)
 			};
 			todoList.render(templateEngine, context);
 			todoFooter.render(templateEngine, context);

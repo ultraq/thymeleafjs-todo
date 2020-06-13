@@ -18,10 +18,12 @@ import {createStore}          from './Store.js';
 import {createTemplateEngine} from './TemplateEngine.js';
 import TodoApp                from './TodoApp.js';
 
+import {initialStateFromDom} from '@ultraq/redux-utils';
+
 
 // App setup
 let templateEngine = createTemplateEngine();
-let store = createStore();
+let store = createStore(initialStateFromDom('#initial-todos', 'todos'));
 
 // App start
 new TodoApp(store, templateEngine);

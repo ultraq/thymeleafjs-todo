@@ -19,13 +19,9 @@ import {NO_FILTER} from '../utilities/Filters.js';
 import {createSlice} from '@reduxjs/toolkit';
 
 /**
- * Reducer for storing the filter applied to the todo list.
- * 
- * @param {String} [state]
- * @param {Object} action
- * @return {String}
+ * Slice for the filter applied to the todo list.
  */
-const filterSlice = createSlice({
+const {actions, reducer} = createSlice({
 	name: 'filter',
 	initialState: NO_FILTER,
 	reducers: {
@@ -33,5 +29,5 @@ const filterSlice = createSlice({
 	}
 });
 
-export const {setFilter} = filterSlice.actions;
-export default filterSlice.reducer;
+export const {setFilter} = actions;
+export default reducer;

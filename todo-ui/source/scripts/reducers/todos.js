@@ -15,20 +15,13 @@
  */
 
 import {createSlice} from '@reduxjs/toolkit';
-import {$}           from 'dumb-query-selector';
-
-const initialState = JSON.parse($('#initial-todos').textContent);
 
 /**
- * Reducer for the todo list.
- * 
- * @param {Array} [state=initialState]
- * @param {Object} action
- * @return {Array} Updated state.
+ * Slice for the todo list.
  */
-const todosSlice = createSlice({
+const {actions, reducer} = createSlice({
 	name: 'todos',
-	initialState,
+	initialState: [],
 	reducers: {
 		createTodo: (state, {payload: todo}) => state.concat(todo),
 		deleteTodo: (state, {payload: todoId}) => state.filter(todo => todo.id !== todoId),
@@ -36,5 +29,5 @@ const todosSlice = createSlice({
 	}
 });
 
-export const {createTodo, deleteTodo, updateTodo} = todosSlice.actions;
-export default todosSlice.reducer;
+export const {createTodo, deleteTodo, updateTodo} = actions;
+export default reducer;

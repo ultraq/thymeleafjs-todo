@@ -18,7 +18,7 @@
 		"@ultraq/dom-utils": "^0.2.0",
 		"@ultraq/fetch-utils": "^1.0.0",
 		"@ultraq/icu-message-formatter": "^0.4.1",
-		"@ultraq/redux-utils": "^0.2.0",
+		"@ultraq/redux-utils": "^0.3.0",
 		"director": "^1.2.8",
 		"dumb-query-selector": "^3.2.0",
 		"keycode": "^2.1.9",
