@@ -57,6 +57,15 @@ class TodoApplication {
 	}
 
 	/**
+	 * Add the {@link ThymeleafJsDialect} to the template engine.
+	 */
+	@Bean
+	ThymeleafJsDialect thymeleafJsDialect() {
+
+		return new ThymeleafJsDialect()
+	}
+
+	/**
 	 * Our "in-memory database" of todo items.
 	 * 
 	 * @return List of hard-coded todo items.
