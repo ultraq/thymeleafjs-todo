@@ -21,11 +21,12 @@ import nz.net.ultraq.thymeleaf.todo.models.Todo
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import static org.springframework.web.bind.annotation.RequestMethod.*
 
 import javax.inject.Inject
 
@@ -47,7 +48,7 @@ class TodoRestController {
 	 * 
 	 * @param todo
 	 */
-	@RequestMapping(value = '/todos', method = POST)
+	@PostMapping(value = '/todos')
 	ResponseEntity<Void> createTodo(@RequestBody Todo newTodo) {
 
 		todos << newTodo
@@ -60,7 +61,7 @@ class TodoRestController {
 	/**
 	 * Delete a todo item.
 	 */
-	@RequestMapping(value = '/todos/{todoId}', method = DELETE)
+	@DeleteMapping(value = '/todos/{todoId}')
 	ResponseEntity<Void> deleteTodo(@PathVariable String todoId) {
 
 		synchronized (todosLock) {
@@ -77,7 +78,7 @@ class TodoRestController {
 	 * @param todoId
 	 * @param todo
 	 */
-	@RequestMapping(value = '/todos/{todoId}', method = PUT)
+	@PutMapping(value = '/todos/{todoId}')
 	ResponseEntity<Void> updateTodo(@PathVariable String todoId, @RequestBody Todo updatedTodo) {
 
 		def todo = todos.find { todo -> todo.id == todoId }

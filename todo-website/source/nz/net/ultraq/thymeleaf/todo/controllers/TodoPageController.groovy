@@ -20,10 +20,8 @@ import nz.net.ultraq.thymeleaf.todo.models.Todo
 
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.GetMapping
 import static nz.net.ultraq.thymeleaf.todo.models.Status.*
-
-import static org.springframework.web.bind.annotation.RequestMethod.*
 
 import javax.inject.Inject
 
@@ -45,7 +43,7 @@ class TodoPageController {
 	 * @param model
 	 * @return {@code index} template.
 	 */
-	@RequestMapping(value = '/', method = GET)
+	@GetMapping(value = '/')
 	String index(Model model) {
 
 		model.addAttribute('filter', [name: 'none'])
