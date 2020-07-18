@@ -23,6 +23,11 @@ import {
 	STANDARD_CONFIGURATION
 }                        from 'thymeleaf';
 
+const messageFormatter = new MessageFormatter({
+	plural: pluralTypeHandler
+});
+let messages;
+
 /**
  * Create and configure the template engine for the todo app.
  * 
@@ -30,12 +35,6 @@ import {
  */
 /* global require */
 export function createTemplateEngine() {
-
-	const messageFormatter = new MessageFormatter({
-		plural: pluralTypeHandler
-	});
-	let messages;
-
 	return new TemplateEngine({
 		...STANDARD_CONFIGURATION,
 		messageResolver: (key, parameters) => {
