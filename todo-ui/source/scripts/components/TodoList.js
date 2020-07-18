@@ -65,7 +65,7 @@ export default class TodoList extends ThymeleafView {
 
 		let {target} = event;
 		let {value} = target;
-		if (value && value.trim()) {
+		if (value?.trim()) {
 			this.store.dispatch(createTodo(value));
 			target.value = '';
 		}

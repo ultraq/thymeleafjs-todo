@@ -23,7 +23,7 @@
  */
 export function parse(fileContents) {
 	return fileContents.split('\n')
-		.filter(line => line && line.trim() && !line.startsWith('#'))
+		.filter(line => line?.trim() && !line.startsWith('#'))
 		.map(entry => {
 			let [key, value] = entry.split('=');
 			return {
