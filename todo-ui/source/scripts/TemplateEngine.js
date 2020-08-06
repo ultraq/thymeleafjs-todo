@@ -16,12 +16,8 @@
 
 import {parse} from './utilities/Properties.js';
 
-import MessageFormatter  from '@ultraq/icu-message-formatter';
-import pluralTypeHandler from '@ultraq/icu-message-formatter/lib/pluralTypeHandler';
-import {
-	TemplateEngine,
-	STANDARD_CONFIGURATION
-}                        from 'thymeleaf';
+import {MessageFormatter, pluralTypeHandler}    from '@ultraq/icu-message-formatter';
+import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
 
 const messageFormatter = new MessageFormatter({
 	plural: pluralTypeHandler
