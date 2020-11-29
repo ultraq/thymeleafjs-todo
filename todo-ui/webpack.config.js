@@ -34,5 +34,5 @@ module.exports = {
 			templates: path.resolve(__dirname, '../todo-website/source/templates')
 		}
 	},
-	devtool: '#source-map'
+	devtool: 'source-map'
 };
