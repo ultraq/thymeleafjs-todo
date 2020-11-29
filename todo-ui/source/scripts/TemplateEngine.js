@@ -22,21 +22,18 @@ import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
 const messageFormatter = new MessageFormatter({
 	plural: pluralTypeHandler
 });
-let messages;
+/* global require */
+const messages = parse(require('messages/messages.properties'));
 
 /**
  * Create and configure the template engine for the todo app.
  * 
  * @return {TemplateEngine}
  */
-/* global require */
 export function createTemplateEngine() {
 	return new TemplateEngine({
 		...STANDARD_CONFIGURATION,
 		messageResolver: (key, parameters) => {
-			if (!messages) {
-				messages = parse(require('messages/messages.properties'));
-			}
 			return messageFormatter.format(messages[key], parameters, 'en-NZ');
 		},
 		templateResolver: templateName => {
