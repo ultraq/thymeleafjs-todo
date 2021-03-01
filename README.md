@@ -2,7 +2,7 @@
 ThymeleafJS Todo
 ================
 
-[![Build Status](https://travis-ci.com/ultraq/thymeleafjs-todo.svg?branch=master)](https://travis-ci.com/ultraq/thymeleafjs-todo)
+[![Build Status](https://travis-ci.com/ultraq/thymeleafjs-todo.svg?branch=main)](https://travis-ci.com/ultraq/thymeleafjs-todo)
 
 Example project for showcasing [ThymeleafJS](https://github.com/ultraq/thymeleafjs).
 Based on the [TodoMVC](http://todomvc.com/) example application.

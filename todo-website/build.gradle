@@ -16,10 +16,10 @@
 
 plugins {
 	id 'groovy'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'org.springframework.boot' version '2.2.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'org.springframework.boot' version '2.4.1'
 }
-apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/3.1.3/gradle-support.gradle'
+apply from: 'https://raw.githubusercontent.com/ultraq/gradle-support/3.4.0/gradle-support.gradle'
 
 description = 'Server side component of the ThymeleafJS TodoMVC example project'
 
@@ -38,7 +38,7 @@ dependencies {
 
 		'com.ibm.icu:icu4j:67.1',
 		'javax.inject:javax.inject:1',
-		'org.codehaus.groovy:groovy:3.0.3'
+		'org.codehaus.groovy:groovy:3.0.7'
 	)
 	implementation('org.grails:grails-core:4.0.1') {
 		transitive = false

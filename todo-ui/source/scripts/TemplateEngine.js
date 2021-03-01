@@ -19,7 +19,7 @@ import {parse} from './utilities/Properties.js';
 import {MessageFormatter, pluralTypeHandler}    from '@ultraq/icu-message-formatter';
 import {TemplateEngine, STANDARD_CONFIGURATION} from 'thymeleaf';
 
-const messageFormatter = new MessageFormatter({
+const messageFormatter = new MessageFormatter('en-NZ', {
 	plural: pluralTypeHandler
 });
 /* global require */
@@ -34,7 +34,7 @@ export function createTemplateEngine() {
 	return new TemplateEngine({
 		...STANDARD_CONFIGURATION,
 		messageResolver: (key, parameters) => {
-			return messageFormatter.format(messages[key], parameters, 'en-NZ');
+			return messageFormatter.format(messages[key], parameters);
 		},
 		templateResolver: templateName => {
 			return require(`templates/${templateName}.html`);
