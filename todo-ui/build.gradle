@@ -21,6 +21,11 @@ plugins {
 
 description = 'Front end component of the ThymeleafJS TodoMVC example project'
 
+node {
+	download = true
+	version = '12.21.0'
+}
+
 assemble {
 	dependsOn npm_run_build
 }
